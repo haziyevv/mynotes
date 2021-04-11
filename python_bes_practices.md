@@ -80,7 +80,7 @@ workon venv --> activates the venv virtual environment
    
     
 
-**_\_slots\_\_**  :    For classes that primarily serve as simple data structures, you can often greatly reduce the memory footprint of instances by adding the __slots__ attribute to the class definition. 
+**_\_slots\_\_**  :    When the instances are created a lot like more than 1000 instances will be created and this class keeps some data that will not be changed, it is better to keep them  in tupple instead of dictionary. Using __slots__ wil do this for us and decrease the memory usage. **So use this whenever the instances are created a lot**.
 
 ```
 class Date:
@@ -91,13 +91,6 @@ class Date:
       self.day = day
 ```
 
-When you define __slots__ , Python uses a much more compact internal representation
-for instances. Instead of each instance consisting of a dictionary, instances are built
-around a small fixed-sized array, much like a tuple or list. Attribute names listed in the
-__slots__ specifier are internally mapped to specific indices within this array. A side
-effect of using slots is that it is no longer possible to add new attributes to instances—
-you are restricted to only those attribute names listed in the __slots__ specifier.
-
 
 
 ##### **Encapsulating names**:
@@ -106,9 +99,15 @@ you are restricted to only those attribute names listed in the __slots__ specifi
 
 2) Any name starting with two leading **underscores (__) is called private implementation**. What private implementations give is that mainly they are also internal operations and should be approached carefully. Also, their difference from single underscore is that these implementations are not available in inheritance. Meaning, private methods and properties of the parent **class are not inherited by the child class.**
 
-3) 
 
 
+##### Class Method and Static Method
+
+**Class Method**: These methods are used like alternative constructors.
+
+**Static Method**: To attach to the class, the utility functions somehow related to the class.
+
+**\_\_init\_\_** : is not a constructor  
 
 
 
