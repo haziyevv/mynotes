@@ -6,9 +6,7 @@
 
 **:%s/hi/hilo/g** --> to search word "hi" and replace it with "hilo". here g means, do this for all occurences.
 
-
-
-
+ctrl + n --> default autocompletion on vim
 
 # Linux Cheatsheet
 
