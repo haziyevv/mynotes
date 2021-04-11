@@ -6,7 +6,8 @@
 
 **:%s/hi/hilo/g** --> to search word "hi" and replace it with "hilo". here g means, do this for all occurences.
 
-ctrl + n --> default autocompletion on vim
+**ctrl + n** --> default autocompletion on vim
+
 
 # Linux Cheatsheet
 
@@ -19,4 +20,6 @@ ctrl + n --> default autocompletion on vim
 **/media**--> all external storage is mounted
 
 **/bin** --> contains all binary(program) files
+
 **find /home -name thisfile.txt** --> searches file named thisfile.txt in home folder
+
