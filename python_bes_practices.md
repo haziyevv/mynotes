@@ -50,7 +50,7 @@ to activate: source testing/bin/activate
 ```
 pip install virtualenvwrapper
 export WORKON_HOME=~/ENVS
-source ./local/bin/virtualenwrapper.sh
+source ./local/bin/virtualenvwrapper.sh
 ```
 
 first command installs virtualenvwrapper.
