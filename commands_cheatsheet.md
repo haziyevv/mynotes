@@ -20,4 +20,5 @@
 
 **/media**--> all external storage is mounted
 
-**/bin** --> contains all binary(program) files 
+**/bin** --> contains all binary(program) files
+**find /home -name thisfile.txt** --> searches file named thisfile.txt in home folder
