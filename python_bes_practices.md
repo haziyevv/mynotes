@@ -65,3 +65,55 @@ workon venv --> activates the venv virtual environment
 ```
 
 
+
+
+
+# Classes in Python
+
+  **String representation of instances**: 
+
+1.   **\_\_str\_\_**  --> result when we call **print(object)** .  
+
+2. **\_\_repr\_\_** --> Printable representation of the class. 
+   
+   These two are mainly similar and have the purpose of showing the printable representation of the class
+   
+    
+
+**_\_slots\_\_**  :    For classes that primarily serve as simple data structures, you can often greatly reduce the memory footprint of instances by adding the __slots__ attribute to the class definition. 
+
+```
+class Date:
+  __slots__ = ['year', 'month', 'day']
+  def __init__(self, year, month, day):
+      self.year = year
+      self.month = month
+      self.day = day
+```
+
+When you define __slots__ , Python uses a much more compact internal representation
+for instances. Instead of each instance consisting of a dictionary, instances are built
+around a small fixed-sized array, much like a tuple or list. Attribute names listed in the
+__slots__ specifier are internally mapped to specific indices within this array. A side
+effect of using slots is that it is no longer possible to add new attributes to instances—
+you are restricted to only those attribute names listed in the __slots__ specifier.
+
+
+
+##### **Encapsulating names**:
+
+1) Any name that starts with a single leading **underscore (_) should always be assumed to be internal implementation.** 
+
+2) Any name starting with two leading **underscores (__) is called private implementation**. What private implementations give is that mainly they are also internal operations and should be approached carefully. Also, their difference from single underscore is that these implementations are not available in inheritance. Meaning, private methods and properties of the parent **class are not inherited by the child class.**
+
+3) 
+
+
+
+
+
+# PYCHARM
+
+1. **ctrl+alt+s** --> goes to settings. In settings you can add documentation types **such as plain, google or numpy**.
+
+2. 
