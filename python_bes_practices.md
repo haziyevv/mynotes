@@ -85,7 +85,82 @@ workon venv --> activates the venv virtual environment
   float("-inf")
   ```
 
-- - [x]  Whenever you see nested if statement, fix it using elif.
+- - [x] Whenever you see nested if statement, fix it using elif.
+
+##### Strings and Collections
+
+**String: str**  --> immutable sequences of unicode codepoints. 
+
+**Multiline Strings**: String below will be written as multiline. Each row is a line. 
+
+```
+"""
+Mene deniz verin,
+O tenha qalıb,
+O meni axtarır,
+Meni gözleyir
+"""
+```
+
+**Raw strings:** r before the string.  
+
+```
+path = 'C:\Users\frodo\documents\bagginss' --> this will give errors
+path = r'C:\Users\frodo\documents\bagginss' --> this will run clean
+```
+
+**Lists:** 
+
+```
+list_ = ["farid",
+         "haziyev",
+         "frodo"]  --> we can do this
+```
+
+# 
+
+#### Modules, Scripts and Programs
+
+**Module**: Any .py code is a module. Mainly modules are convenient to import with api.
+
+**Script**: any simple python code, that is more compatible to run from terminal rather than using it in an api.
+
+**Program**: Composed of many modules.
+
+##### Modules:
+
+- ```
+  from word import (fetch_words, print_words) --> we can import several 
+                              functions from the word module like this
+  ```
+
+- **CODE OF ZEN**: Sparse is better than Dense. You should put two blank lines between the functions.
+
+- **Docstring**: (documentation of the module)
+  
+  - In the first line use it as an information about what the module do in general, and how to run it
+  
+  - ```
+    """
+    What this module does in general, what is its purpose?
+    Usage: python3 module_frodo.py "frodo baggıns"
+    """
+    ```
+  
+  - In each function add docstring, explaining the purpose of the function, what it does, input arguments and what it will return
+  
+  - ```
+    """
+    This function will make the life a better place for us.
+    Args:
+        url: the url you want to connect
+        age: your age
+    Returns:
+        A list of movies that u could watch
+    """
+    ```
+
+  
 
 
 
@@ -95,11 +170,9 @@ workon venv --> activates the venv virtual environment
 
 
 
+## Classes in Python
 
-
-# Classes in Python
-
-  **String representation of instances**: 
+**String representation of instances**: 
 
 1.   **\_\_str\_\_**  --> result when we call **print(object)** .  
 
