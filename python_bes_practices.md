@@ -64,6 +64,35 @@ mkvirtualenv venv --> creates a virtual environment named venv in ENVS folder
 workon venv --> activates the venv virtual environment
 ```
 
+# Python BASICS
+
+- Is a dynamically typed laguage. Object's suitability for a context is determined on runtime
+
+- Is an interpreted language. --> But compiled to bytecode before it is executed
+
+- PEP8 --> python coding standards
+
+- PEP20 --> zen of python. just type **import this** 
+
+- ```
+  import math
+  help(math) --> returns any documentation for math module
+  ```
+
+- ```
+  float("inf")
+  float("nan")    --> converts these to floats
+  float("-inf")
+  ```
+
+- - [x]  Whenever you see nested if statement, fix it using elif.
+
+
+
+
+
+
+
 
 
 
@@ -91,15 +120,11 @@ class Date:
       self.day = day
 ```
 
-
-
 ##### **Encapsulating names**:
 
 1) Any name that starts with a single leading **underscore (_) should always be assumed to be internal implementation.** 
 
 2) Any name starting with two leading **underscores (__) is called private implementation**. What private implementations give is that mainly they are also internal operations and should be approached carefully. Also, their difference from single underscore is that these implementations are not available in inheritance. Meaning, private methods and properties of the parent **class are not inherited by the child class.**
-
-
 
 ##### Class Method and Static Method
 
@@ -108,8 +133,6 @@ class Date:
 **Static Method**: To attach to the class, the utility functions somehow related to the class.
 
 **\_\_init\_\_** : is not a constructor  
-
-
 
 # PYCHARM
 
