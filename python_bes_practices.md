@@ -66,7 +66,11 @@ workon venv --> activates the venv virtual environment
 
 # Python BASICS
 
-- Is a dynamically typed laguage. Object's suitability for a context is determined on runtime
+- Is a dynamically typed laguage. Object's suitability for a context is determined on runtime.
+
+- Also strongly type language, there is no implicit conversion. Meaning you can not add string and int it will give **TYPE ERROR**
+
+- <u>**<mark>DO NOT USE MUTABLE OBJECTS SUCH AS LISTS AS DEFAULT ARGUMENTS TO A METHOD</mark>**</u>
 
 - Is an interpreted language. --> But compiled to bytecode before it is executed
 
@@ -161,10 +165,6 @@ list_ = ["farid",
     ```
 
   
-
-
-
-
 
 
 
