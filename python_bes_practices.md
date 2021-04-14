@@ -164,11 +164,73 @@ list_ = ["farid",
     """
     ```
 
+
+
+## Collections
+
+- **Tuples:** 
+  
+  - If you type one integer inside tuple python will see it as an integer, you should put a comma after it to turn it to tuple
+    
+    
+  
+  ```
+  In [1]: h = (23)
+  
+  In [2]: type(h)
+  Out[2]: int
+  
+  In [3]: h = (23,)
+  
+  In [4]: type(h)
+  Out[4]: tuple
+  ```
+  
+  - If paranthesis are omitted it still be a tuple
+  
+  ```
+  In [11]: p = 1,2,3,4,5,6
+  
+  In [12]: type(p)
+  Out[12]: tuple
+  ```
+
+
+
+- **String**:
+  
+  - Partition method: Divide the string for the seperator and outputs --> **prefix, seperator, suffix**. 
+  
+  ```
+  "unforgettable".partition("forget")
+  
+  ("un", "forget", "able")
+  ```
+
+
+
+- **List:**
+  
+  - A list is a mutable object and when we assign list **a**  to list **b**, list **b** will take both values and the reference point of list **b**. So changing list **b** will also change list **a** . To cope with this we should copy the list.
+  
+  - 3 different ways of copying
+  
+  ```
+  1) list1 = [1,2,3,4]
+  list2 = list1[:]
+  
+  2) list1 = [1,2,3,4]
+  list2 = list1.copy()
+  
+  3) list1 = [1,2,3,4]
+  list2 = list(list1)
+  ```
+
+
+
+
+
   
-
-
-
-
 
 ## Classes in Python
 
@@ -207,8 +269,18 @@ class Date:
 
 **\_\_init\_\_** : is not a constructor  
 
+
+
+
+
+
+
+
+
+
+
 # PYCHARM
 
 1. **ctrl+alt+s** --> goes to settings. In settings you can add documentation types **such as plain, google or numpy**.
 
-2. 
+2. **alt+enter** --> auto complete
