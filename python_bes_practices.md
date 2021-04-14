@@ -226,9 +226,31 @@ list_ = ["farid",
   list2 = list(list1)
   ```
 
+- **Copies as shallow**: When we use .copy() or [:] or list(), it does not matter immutable objects inside the list are copied with their references, so changing them will still change the main list.
 
+- ```
+  list1 = [[1,2,3], [2,3,4]]
+  list2 = list1.copy()
+  
+  list2[0][0] = 122
+  
+  In [1]: list1
+  Out[1]: [[122, 2, 3], [2, 3, 4]]
+  
+  ```
 
+- to solve this use **copy.deepcopy**() . This will recursively copy the values inside the list.
 
+- ```
+  import compy
+  list1 = [[1,2,3], [2,3,4]]
+  list2 = copy.deepcopy(list1)
+  In [19]: list2[0][0] = "aa"
+  
+  In [20]: list1
+  Out[20]: [[1, 2, 3], [2, 3, 4]]
+  
+  ```
 
   
 
