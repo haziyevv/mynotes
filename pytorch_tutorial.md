@@ -4,7 +4,7 @@
 
 - This is not to say that feature engineering has no place in deep learning; we often need to inject some form of prior knowledge to deep learning models.
 
-- First import thing about pytorch is it provides multidimensional arrays named tensors with waste amount of operations, and ability to easily move from cpu to gpu. 
+- First important thing about pytorch is it provides multidimensional arrays named tensors with waste amount of operations, and ability to easily move from cpu to gpu. 
 
 - Second important thing is that it uses autograd engine to track the operations on tensors and compute derivatives with respect to any inputs.
 
@@ -18,7 +18,7 @@
 
 #### AlexNet
 
-This architecture was the breakthrough in deep learning. In 2012 ILSVRC competition, ALEXNET won by a large margin or 15% error where second best model which were not using deep learning has gor 26% error rate.  The architecture of AlexNet is given below:
+This architecture was the breakthrough in deep learning. In 2012 ILSVRC competition, ALEXNET won by a large margin or 15% error where second best model which were not using deep learning has got 26% error rate.  The architecture of AlexNet is given below:
 
 <img title="" src="alexnet.jpg" alt="">  
 
@@ -61,11 +61,7 @@ This architecture was the breakthrough in deep learning. In 2012 ILSVRC competit
    'wide_resnet50_2']
   ```
 
-
-
 If we type **models.AlexNet(**) we will get an empty AlexNet class. We should train it from scratch or load weights. However, lower case **alexnet** --> function is equipped with the argument that we can pass to make the model load pretrained weigths.
-
- 
 
 ```
 alexnet = models.alexnet(pretrained=True)
@@ -88,3 +84,37 @@ preprocess = transforms.Compose([
 ```
 
 After going through preprocess, we can send our data to the **alexnet** as input.
+
+
+
+
+
+## Pytorch Tensors
+
+- Pytorch tensors are similar to numpy arrays but with a few additional superpowers. 
+  
+  - Ability to perform operations on GPU
+  
+  - Distribute operations to multiple devices
+  
+  - Keep track of the graph of computations that created them
+
+
+
+A simple one dimensional tensor with ones.
+
+- ```
+  import torch
+  a = torch.ones()
+  
+  In [4]: a
+  Out[4]: tensor([1., 1., 1.])
+  ```
+
+
+
+###### Essense of Tensors
+
+- Python lists or tupples are collections of Python objects that are individually allocated into memory. Pytorch tensors or NumPy arrays on the other hand are views over contiguous memory blocks. Pytorch or numpy arrays are unboxxed C numeric types not python objects.
+
+- 

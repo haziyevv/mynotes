@@ -164,29 +164,25 @@ list_ = ["farid",
     """
     ```
 
-
-
 ## Collections
 
 - **Tuples:** 
   
   - If you type one integer inside tuple python will see it as an integer, you should put a comma after it to turn it to tuple
-    
-    
-  
-  ```
-  In [1]: h = (23)
-  
-  In [2]: type(h)
-  Out[2]: int
-  
-  In [3]: h = (23,)
-  
-  In [4]: type(h)
-  Out[4]: tuple
-  ```
-  
-  - If paranthesis are omitted it still be a tuple
+
+```
+In [1]: h = (23)
+
+In [2]: type(h)
+Out[2]: int
+
+In [3]: h = (23,)
+
+In [4]: type(h)
+Out[4]: tuple
+```
+
+- If paranthesis are omitted it still be a tuple
   
   ```
   In [11]: p = 1,2,3,4,5,6
@@ -194,8 +190,6 @@ list_ = ["farid",
   In [12]: type(p)
   Out[12]: tuple
   ```
-
-
 
 - **String**:
   
@@ -206,8 +200,6 @@ list_ = ["farid",
   
   ("un", "forget", "able")
   ```
-
-
 
 - **List:**
   
@@ -236,23 +228,101 @@ list_ = ["farid",
   
   In [1]: list1
   Out[1]: [[122, 2, 3], [2, 3, 4]]
-  
   ```
 
 - to solve this use **copy.deepcopy**() . This will recursively copy the values inside the list.
 
 - ```
-  import compy
+  import copy
   list1 = [[1,2,3], [2,3,4]]
   list2 = copy.deepcopy(list1)
   In [19]: list2[0][0] = "aa"
   
   In [20]: list1
   Out[20]: [[1, 2, 3], [2, 3, 4]]
-  
   ```
 
   
+
+
+
+# Exception Handling
+
+**Index Error**: When the integer index is not in the range
+
+**Key Error**: When the key does not exist in the lookup
+
+**Value Error:** Object is of the right type, but contains inapropriate value for the operation. In the example below we can see that. Input type is correct, it is a string but a string that can not be converted to integer.
+
+```
+def converter(s: str) -> int:
+    x = int(s)
+    return x
+
+
+
+In [2]: converter("alma")
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-2-684f7a9b4202> in <module>
+----> 1 converter("alma")
+
+<ipython-input-1-f8f112efece0> in converter(s)
+      1 def converter(s: str) -> int:
+----> 2     x = int(s)
+      3     return x
+
+ValueError: invalid literal for int() with base 10: 'alma'
+
+```
+
+
+
+**Type Error**: Object is not of the right type. In the example below, string or byte or int is expected, but  input was a list.
+
+```
+In [3]: converter([1,2,3,4])
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-3-c417cd5701e1> in <module>
+----> 1 converter([1,2,3,4])
+
+<ipython-input-1-f8f112efece0> in converter(s)
+      1 def converter(s: str) -> int:
+----> 2     x = int(s)
+      3     return x
+
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'list'
+
+```
+
+
+
+
+
+- [x] <mark>Avoid doing this</mark>: 
+
+```
+try:
+    do_something
+except:
+pass
+```
+
+or 
+
+```
+try:
+    do_something
+except Exception as e
+    print(e)
+```
+
+<mark>If you pass, or catch any exception, the you will not know what causes the error.</mark>
+
+
+
+
 
 ## Classes in Python
 
@@ -290,16 +360,6 @@ class Date:
 **Static Method**: To attach to the class, the utility functions somehow related to the class.
 
 **\_\_init\_\_** : is not a constructor  
-
-
-
-
-
-
-
-
-
-
 
 # PYCHARM
 

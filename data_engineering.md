@@ -4,8 +4,6 @@
 gcloud compute instances create testc --zone us-central1-a
 ```
 
-
-
 2) Config from cloud shell the default zone to **us-central1-b**. 
 
 ```
@@ -13,8 +11,6 @@ gcloud config set compute/zone us-central1-b
 ```
 
 If we create an instance by default it will be assigned to zone **us-central1-b**
-
-
 
 3) To connect to an instance through ssh:
 
@@ -27,8 +23,6 @@ If the instance is in another zone --> then it will not ssh. So you should give 
 ```
 gcloud compute ssh testc --zone us-central1-a
 ```
-
-
 
 4. To create a persistent disk:
    
@@ -51,12 +45,6 @@ gcloud compute ssh testc
 ls -la /dev/disk/by-id/
 ```
 
-
-
-
-
-
-
 ## Kubernetes
 
 - Virtual Machines have their own operation systems, but in containers you do not need an operation system, you use the main machine's system.
@@ -66,7 +54,3 @@ ls -la /dev/disk/by-id/
 - <img title="" src="kubernetes.png" alt="">
 
 **Kubernetes** consists of a number of **node instances** and each node instance can be named as **Pod**. Each Pod is consisting of several **containers**.
-
-
-
-
