@@ -54,3 +54,34 @@ ls -la /dev/disk/by-id/
 - <img title="" src="kubernetes.png" alt="">
 
 **Kubernetes** consists of a number of **node instances** and each node instance can be named as **Pod**. Each Pod is consisting of several **containers**.
+
+
+
+To create kubernetes cluster with one node instance
+
+```
+gcloud container clusters create my-first-cluster --num-nodes 1
+```
+
+
+
+To deploy a wordpress docker container to our kubernetes cluster. 
+
+```
+kubectl run wordpress --image=tutum/wordpress --port=80
+```
+
+tutum/wordpress is an out-of-the box docker image that includes eveything to run the site. Applying the code above a pod is created. 
+
+```
+kubectl get pods
+=>
+NAME        READY   STATUS    RESTARTS   AGE
+wordpress   1/1     Running   0          3m6s
+```
+
+
+
+By default a pod is accessible to only other machines in the cluster. 
+
+We should expose the pod as a service so it can be accessed externally. 
