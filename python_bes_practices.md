@@ -244,8 +244,6 @@ Out[4]: tuple
 
   
 
-
-
 # Exception Handling
 
 **Index Error**: When the integer index is not in the range
@@ -273,10 +271,7 @@ ValueError                                Traceback (most recent call last)
       3     return x
 
 ValueError: invalid literal for int() with base 10: 'alma'
-
 ```
-
-
 
 **Type Error**: Object is not of the right type. In the example below, string or byte or int is expected, but  input was a list.
 
@@ -293,12 +288,7 @@ TypeError                                 Traceback (most recent call last)
       3     return x
 
 TypeError: int() argument must be a string, a bytes-like object or a number, not 'list'
-
 ```
-
-
-
-
 
 - [x] <mark>Avoid doing this</mark>: 
 
@@ -320,11 +310,49 @@ except Exception as e
 
 <mark>If you pass, or catch any exception, the you will not know what causes the error.</mark>
 
+## 
+
+## Iterables
+
+1) Iterable : something that can be iterated (set, list, dictionary, tuple)
+
+2) iterator: Using iter() function iterable is changed to iterator, on which we can iteratre over.
+
+```
+itlist = iter(list_)
+next(itlist) --> will give the next element in list
+```
+
+3. chain function: concatenates several lists lazily
+
+```
+from itertools import chain
+
+a1  = [1,2,3,4,5]
+a2  = [2,2,2,2,2]
+
+a3 = chain(a1, a2)
+In [34]: a3
+Out[34]: <itertools.chain at 0x7ff1bd65a760>
+In [35]: list(a3)
+Out[35]: [1, 2, 3, 4, 5, 2, 2, 2, 2, 2]
+```
+
 
 
 
 
 ## Classes in Python
+
+
+
+
+
+
+
+
+
+
 
 **String representation of instances**: 
 

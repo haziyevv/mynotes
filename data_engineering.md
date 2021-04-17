@@ -55,15 +55,11 @@ ls -la /dev/disk/by-id/
 
 **Kubernetes** consists of a number of **node instances** and each node instance can be named as **Pod**. Each Pod is consisting of several **containers**.
 
-
-
 To create kubernetes cluster with one node instance
 
 ```
 gcloud container clusters create my-first-cluster --num-nodes 1
 ```
-
-
 
 To deploy a wordpress docker container to our kubernetes cluster. 
 
@@ -80,8 +76,26 @@ NAME        READY   STATUS    RESTARTS   AGE
 wordpress   1/1     Running   0          3m6s
 ```
 
-
-
 By default a pod is accessible to only other machines in the cluster. 
 
 We should expose the pod as a service so it can be accessed externally. 
+
+
+
+
+
+
+
+## App Engine
+
+2 different App Engine choices exist:
+
+1) **Standard**: Preconfigured with os and programs
+
+2) **Flexible**: More like a compute engine. You can chose os and even create docker files to run.
+
+
+
+**Cloud Functions**
+
+1. 
