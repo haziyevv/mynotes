@@ -338,21 +338,7 @@ In [35]: list(a3)
 Out[35]: [1, 2, 3, 4, 5, 2, 2, 2, 2, 2]
 ```
 
-
-
-
-
 ## Classes in Python
-
-
-
-
-
-
-
-
-
-
 
 **String representation of instances**: 
 
