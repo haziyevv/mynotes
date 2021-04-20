@@ -109,8 +109,6 @@ A simple one dimensional tensor with ones.
 
 - Python lists or tupples are collections of Python objects that are individually allocated into memory. Pytorch tensors or NumPy arrays on the other hand are views over contiguous memory blocks. Pytorch or numpy arrays are unboxed C numeric types not python objects.
 
-
-
 ```
 points = torch.tensor([[5,3,2], [4,3,3]])
 
@@ -127,8 +125,6 @@ Out[4]: tensor([5, 3, 2])
 
 Here we created a tensor object and then accessed the first row of that object. Does this mean we have created a new tensor object ? Of cource not, the object is the same in the storage but a view of that storage is returned.
 
-
-
 ### Tensor element types
 
 1) Numbers in python are objects, but in numpy they are just 32 bit floating point numbres. İn python lists, python convert the number to an object with different capabilities that need more memory. 
@@ -144,10 +140,6 @@ Here we created a tensor object and then accessed the first row of that object. 
    3) torch.int64 --> or torch.long , singned 64 bit integers
 
 4) Default data type for floating point numbers is torch.float32 and for integers is torch.int64 
-
-
-
-
 
 ### Torch Storage
 
@@ -202,7 +194,6 @@ Out[63]:
 tensor([[4., 1.],
         [1., 7.],
         [2., 1.]])
-
 ```
 
 #### 
@@ -230,8 +221,6 @@ In [71]: points.stride()
 Out[71]: (2, 1)
 ```
 
-
-
 4. When get a part of the points tensor using index, a new storage will not be allocated, it will still use the same storage but its storage offset and stride will change.
 
 ```
@@ -248,10 +237,6 @@ Out[76]: (1,)
 If we change respective numbers in the **storage**, then both **second_point** and points **tensors** will also change.
 
 Also, if we change the **second_point** tensor, both **storage** and **points** tensor will also change.
-
-
-
-
 
 5. If we take transpose, again the storage will not change but the stride and shape will change.
 
@@ -273,7 +258,6 @@ Out[133]: (2, 1)
 
 In [134]: points_t.stride()
 Out[134]: (1, 2)
-
 ```
 
 6. When we take the transpose and create **points_t**, then it will not be a contiguous tensor. 
@@ -291,10 +275,6 @@ points_t = points_t.contiguous()
 
 In the contiguous tensors number are alligned to the storage row by row.
 
-
-
-
-
 ### Moving Tensors to GPU
 
 1. A tensor can be created in gpu directly.
@@ -305,17 +285,11 @@ points = torch.tensor([[5,3,2], [4,4,2], [4,3,3]],
                         device="cuda")
 ```
 
-
-
 2. Also it can be moved from cpu to gpu and vice versa.
 
 ```
 points = points.to("cpu")
 ```
-
-
-
-
 
 **Serializing Tensors**
 
@@ -327,8 +301,6 @@ torch.save(points, "test.t")
 points = torch.load("test.t")
 ```
 
-
-
 2. Serialize using hdf5. 
 
 ```
@@ -336,3 +308,123 @@ f = h5py.File("file.hdf5", "w")
 dset = f.create_dataset("coord", data=points.numpy())
 f.close()
 ```
+
+
+
+
+
+## Data Representation
+
+1. What data type each scalar representing a pixel is is encoded generally in consumer cameras?
+   
+   - Using 8 bit integers
+   
+   - In some medical, scientific and industrial applications, you can find 12bit or 16bit
+
+2. How to load an image using imageio?
+
+```
+import imageio
+img_arr = imageio.imread("filename.jpg")
+In [13]: img_arr.shape
+Out[13]: (1280, 960, 3)
+```
+
+3. What is the layout pytorch modules dealing with images require tensors to have?
+   
+   - **CxHxW** --> channel, height, witdh
+   
+   - in the example above the picture has shape **HxWxC**. So it should be converted to the accepted format.
+
+4. How to correct the layout from **HxWxC** to **CxHxW** ?
+
+```
+In [10]: img_arr = img_arr.permute(2, 0, 1)
+
+In [11]: img_arr.shape
+Out[11]: torch.Size([3, 1280, 960]
+```
+
+5. What is the layout to store multiple images in a batch of arrays ? 
+   
+   - **NxCxHxW** --> number of images, channels, height, width
+
+
+
+6. What are continuous, ordinal and categorical values ?
+   
+   - **Continuous**, is where there is a strict ordering and difference between values has a strict meaning. ex: 1,2,3,4,5,6
+   
+   - **Ordinal**, is where there is ordering but difference between values has no meaning.  ex: small, medium, large
+   
+   - **Categorical**, is where there is no ordering and difference between values does not make sense. ex: sport, economy, trade.
+
+### Normalizing image data
+
+1. Just divide the values of the pixels to 255, this is a little bit naive
+   
+   ```
+   batch = batch.float()
+   batch /= 255.0
+   ```
+
+2. Compute mean and standars deviation and normalise to have zero mean and unit standard deviation.
+
+```
+n_channels = batch.shape[1]
+for c in range(n_channels):
+    mean = torch.mean(batch[:, c])
+    std = torch.std(batch[:,c])
+    batch[:,c] = (batch[:,c]-mean)/std
+```
+
+
+
+### 3D images
+
+1. Images we talked before are 2d images that are taken with a camera. In some contexts such as medical imaging, for example CT (computer tomography), we deal with sequences of images stacked from head to foot axis. 
+
+2. In CT scans intensity is used instead of channel. 
+
+3. Intensity represents the density of different body parts. 
+
+4.  CTs have only a single intensity channel, like a grayscale image. 
+
+5. Layout of CT scan image : **NxCxDxHxW** --> batch size, channel, depth, height, width
+
+
+
+
+
+**Scatter Method**:  Fills the tensor with values from a source tensor along the indices provided as arguments. 
+
+```
+target_onehot = torch.zeros(5, 4)
+target = torch.tensor([2,1,1,3,2])
+
+In [24]: target_onehot.scatter(1, target.unsqueeze(1), 1)
+Out[24]: 
+tensor([[0., 0., 1., 0.],
+        [0., 1., 0., 0.],
+        [0., 1., 0., 0.],
+        [0., 0., 0., 1.],
+        [0., 0., 1., 0.]])
+```
+
+first argument to scatter method is the dimension in which to add number, 
+
+second argument is indices of the elements to scatter,
+
+third argumnet is the number to put.
+
+
+
+1. What does **unsqueeze** do ?
+   
+   - increases the dimension of the tensor in the given axis
+
+
+
+
+
+## The Mechanics of Learning
