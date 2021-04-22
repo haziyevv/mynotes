@@ -80,12 +80,6 @@ By default a pod is accessible to only other machines in the cluster.
 
 We should expose the pod as a service so it can be accessed externally. 
 
-
-
-
-
-
-
 ## App Engine
 
 2 different App Engine choices exist:
@@ -94,8 +88,111 @@ We should expose the pod as a service so it can be accessed externally.
 
 2) **Flexible**: More like a compute engine. You can chose os and even create docker files to run.
 
-
-
 **Cloud Functions**
 
-1. 
+
+
+
+
+
+
+
+
+
+
+# Data Engineering Basics
+
+1. **ETL** --> Extract, transform and Load
+
+
+
+
+
+
+
+## Relational Databases
+
+When to use and pros? 
+
+1. Use with small data
+
+2. You can add **secondary indexes** for fast querying.
+
+ex: Your primary key is City but you see that most of the time you query using the country code. So you add the Country code as a secondary index, to make it faster for querying. 
+
+| City   | Code | Country code |
+| ------ | ---- | ------------ |
+| Paris  | 011  | 1            |
+| London | 013  | 2            |
+
+
+
+
+
+### ACID transactions
+
+- Properties of databases intended to guarantee their working even in problematic situations.
+
+- **A**TOMICITY:  The whole transaction is processed or nothing is processed. ex: if a transaction consists of 3 operations and 1 one succeeds and second one does not succeed, then it should roll back to the start of the transaction and do not apply the first operation.
+
+- **C**onsistency: Only valid data are added to database.
+
+- **I**solation: One transaction should not affect the other transaction. 
+
+- **D**urability: Completed transactions are saved to database, even if there is a system failure.
+
+
+
+**When Not To Use Relational Databases**
+
+- Large amounts of data.
+
+- Need to store different data formats
+
+- Flexible schema. To add columns to some rows but not all.
+
+- Horizontal scaling. Add new computers to the system. 
+
+
+
+
+
+## Postgresql
+
+1) Switching to postgres account:
+
+```
+sudo -i -u postgres
+```
+
+2. To access postgrees prompt type:
+
+```
+psql
+```
+
+3. Create a database
+
+```
+sudo -u postgres createdb student_db
+```
+
+4. Create user
+
+```
+sudo -u postgres createuser student
+psql
+alter user student with encrypted password "kelem";
+```
+
+Create user student. Then enter posgtgres terminal and then give that user a password.
+
+
+
+5. To connect to the database with the given creadentials
+
+```
+psql -h 127.0.0.1 --username student -d student_db --password
+```
+
+Here we connect to **hostname=localhost**,  **username=student** and **database=student_db**
