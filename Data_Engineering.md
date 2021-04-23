@@ -51,7 +51,7 @@ ls -la /dev/disk/by-id/
 
 - Kubernetes is a container cluster, where lots containers work.
 
-- <img title="" src="kubernetes.png" alt="">
+- <img title="" src="figures/kubernetes.png" alt="">
 
 **Kubernetes** consists of a number of **node instances** and each node instance can be named as **Pod**. Each Pod is consisting of several **containers**.
 

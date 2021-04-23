@@ -10,7 +10,7 @@
 
 - 
 
-- <img title="" src="pytorch_design.jpg" alt="">
+- <img title="" src="figures/pytorch_design.jpg" alt="">
 
 **torch.\_\_file\_\_** --> shows the location where torch is installed
 
@@ -20,7 +20,7 @@
 
 This architecture was the breakthrough in deep learning. In 2012 ILSVRC competition, ALEXNET won by a large margin or 15% error where second best model which were not using deep learning has got 26% error rate.  The architecture of AlexNet is given below:
 
-<img title="" src="alexnet.jpg" alt="">  
+<img title="" src="figures/alexnet.jpg" alt="">  
 
 - This model and other famous models are loaded to **torchvision.models** and can easily applied.
 
