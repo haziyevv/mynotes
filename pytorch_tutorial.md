@@ -411,8 +411,6 @@ third argumnet is the number to put.
 
 ## 
 
-
-
 ## Broadcasting
 
 * Ability to apply operations on matrices with different sizes. There are some constraints.
@@ -422,8 +420,6 @@ third argumnet is the number to put.
 
 3) Broadcasting does not apply to inplace operations
 
-
-
 ```
 a = torch.ones(3,1,2)
 b = torch.ones(1,8,1)
@@ -432,12 +428,6 @@ c = a*b
 c.shape
 (3, 8, 2)
 ```
-
-
-
-
-
-
 
 ## Autograd
 
@@ -458,15 +448,9 @@ c.shape
             params -= (learning_rate * params.grad)
 ```
 
-
-
-
-
 ### Optimizer -->
 
 Used to update the parameters automatically and apply all kinds of learning rate adaption and optimization strategies.
-
-
 
 Code above will be decrease like this:
 
@@ -480,10 +464,21 @@ Code above will be decrease like this:
         optimizer.step()
 ```
 
-
-
 **loss.backward** calculates the derivatives of all the parameters and **optimizer.step** updates those parameters using the given calculated derivatives. 
 
-
-
 **Stochastic Gradient Descent:** The gradient is obtained by averaging a random minibatch from the whole dataset. 
+
+
+
+1. What does  torch.set_grad_enabled(True) do ?
+
+```
+def calc_forward(x, y, is_train):
+    with torch.set_grad_enabled(is_train):
+        y_hat = model(x)
+        loss = loss_fn(y_hat, y)
+
+    return loss
+```
+
+Here we apply one forward pass for either training or validation. If we want validation we should select **is_train=False**. For training **is_train = True**.
