@@ -8,7 +8,6 @@
 
 **ctrl + n** --> default autocompletion on vim
 
-
 # Linux Cheatsheet
 
 **tar xzf frodo.tar.gz** . --> this will untar and ungz and extraxt files inside the frodo.tar.gz to current directory
@@ -22,4 +21,9 @@
 **/bin** --> contains all binary(program) files
 
 **find /home -name thisfile.txt** --> searches file named thisfile.txt in home folder
+
+**xdg-open** filename --> to open a pdf from terminal 
+
+**play file.mp3** --> to play audios from terminal
+
 
