@@ -14,17 +14,7 @@
 
 7. **Timbre**: Quality of the sound or the identity of the sound. (Sound difference between a violin and a piano)
 
-8.  
-
-
-
-
-
-
-
-
-
-
+8. 
 
 ## Problems needed to solve to apply ASR
 
@@ -60,15 +50,13 @@ homophone --> same pronouncuation but different meaning
 
 6. Decoder:  Algorithms to search the hypothesis space efficiently. Combines the predictions of acoustic and language model to predict the most likely sentence.
 
-
-
-
-
-
-
-
-
 ## Feature Extraction
+
+Theory:
+
+1. Divide the audio waveform to 25ms windows with 10ms sliding. Apply Fourier transform to each window and find MFCC features for each window.
+
+2. 
 
 1. Some basic tools:
 
@@ -126,3 +114,86 @@ trimmed, index = librosa.effects.trim(reduced_noise,
 ```
 
 **top_db** --> threshold for decibel. So decibel below than top_db will be trimmed.
+
+# ASR presentation pycon-2018
+
+**Signal**: Continuous Mathematical function.
+
+**Wave**: Contains an array of discrete samples.
+
+**Spectrum**: Contains the discrete fourier transform of the wave.
+
+```mermaid
+graph LR
+A[Signal] -->B(Wave)
+    B -->C[Spectrum]
+    B -->C[Spectrogram]
+```
+
+Given a **Signal** which is continuous, I can sample it and get a **Wave**. So **Wave** is a discrete sequence of **Signals**. Given a **Wave**, I can compute a **Spectrum**. Also, given a **Spectrum** I can go back and compute the corresponding **Wave**.
+
+**Sound Signal** : Variations in air pressure over time
+
+**Microphone**: Measures the variations in air pressure and generates electrical signals that represent sound.
+
+**Speaker**: Takes and electrical signal and generates a **sound**. 
+
+**Periodic Signals**: Signals that repeat themselves after some period of time. For example, if you ring a bell, it vibrates and generates a periodic sound. 
+
+<img title="" src="file:///home/haziyevv/Documents/mynotes/figures/cosine_wav.png" alt="">
+
+**Cycle**: One full repetition of a periodic wave. In this cosine wave, we see that there are 3 cycles.
+
+**Period**: Duration of one cycle. In the cosine wave given above, we see that perios is 2.3 miliseconds.
+
+**Frequency**: Number of cycles per second. It is also the inverse of a **Period**. 1000/2.3=**439** . In this graph, **frequency** is 439hz. **Hz(hertz)** is the frequency unit, meaning number of cycles per second.
+
+The shape of a periodic signal is called a **waveform**. 
+
+**Spectral Decomposition**: Any signal can be expressed as the sum of sinusoids with different frequencies. 
+
+**Low Pass filter**:  To remove frequencies above the given threshold
+
+**High Pass filter**: To remove the frequencies below the given threshold
+
+The lowest frequency component is called the **fundamental frequency**.
+
+When the sampling rate is 10,000 hz, the highest frequency we can measure correctly is 5000hz, above that will appear to be a low frequency signal. This is called **Nyguist theorem**, we can correctly sample frequencies below the half of the sample rate. This is also called "**folding frequency**"
+
+
+
+**Chapter 6**
+
+
+1. Sinusoid function is given below:
+
+$$
+y_s = A * cos(2*\pi*f_s*t_s)
+$$
+
+fs --> frequency
+
+ts --> time.
+
+A --> amplitude
+
+```
+ts = np.linspace(0, 1, 11025)
+A = 0.1
+fs = 100
+
+ys = 0.1*np.cos(2*np.pi*fs*ts)
+```
+
+
+
+2. To make an audio
+
+```
+from IPython.display import Audio
+
+
+audio = Audio(data=ys, rate=11025)
+```
+
+3. 
