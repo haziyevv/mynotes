@@ -90,33 +90,23 @@ We should expose the pod as a service so it can be accessed externally.
 
 **Cloud Functions**
 
-
-
-
-
-
-
-
-
-
-
 # Data Engineering Basics
 
 1. **ETL** --> Extract, transform and Load
-
-
-
-
-
-
 
 ## Relational Databases
 
 When to use and pros? 
 
-1. Use with small data
+1. Aggregations are possible, such as group by, join etc.
 
-2. You can add **secondary indexes** for fast querying.
+2. You can do joins.
+
+3. ACID transactions.
+
+4. Use with small data
+
+5. You can add **secondary indexes** for fast querying.
 
 ex: Your primary key is City but you see that most of the time you query using the country code. So you add the Country code as a secondary index, to make it faster for querying. 
 
@@ -124,10 +114,6 @@ ex: Your primary key is City but you see that most of the time you query using t
 | ------ | ---- | ------------ |
 | Paris  | 011  | 1            |
 | London | 013  | 2            |
-
-
-
-
 
 ### ACID transactions
 
@@ -141,21 +127,17 @@ ex: Your primary key is City but you see that most of the time you query using t
 
 - **D**urability: Completed transactions are saved to database, even if there is a system failure.
 
-
-
 **When Not To Use Relational Databases**
 
 - Large amounts of data.
+
+- Need to do fast reads and writes. High throughput rate.
 
 - Need to store different data formats
 
 - Flexible schema. To add columns to some rows but not all.
 
 - Horizontal scaling. Add new computers to the system. 
-
-
-
-
 
 ## Postgresql
 
@@ -187,8 +169,6 @@ alter user student with encrypted password "kelem";
 
 Create user student. Then enter posgtgres terminal and then give that user a password.
 
-
-
 5. To connect to the database with the given creadentials
 
 ```
@@ -196,3 +176,61 @@ psql -h 127.0.0.1 --username student -d student_db --password
 ```
 
 Here we connect to **hostname=localhost**,  **username=student** and **database=student_db**
+
+6. In psql when you do not commit a query after executing there will be error and psql will not let us continue. To continue with new queries, we should either commit or reconnect. To solve this **autocommit** is used.
+
+```
+conn = psycopg2.connect("host=127.0.0.1 user=student 
+                        dbname=student_db password=student")
+
+
+conn.set_session(autocommit=True)
+```
+
+7. To give user priviliges to create database:
+
+```
+sudo -i -u postgres
+psql
+alter user student with createdb;
+```
+
+8. In psycopg2, how to connect to a database ?
+
+```
+conn = psycopg2.connect("""host=127.0.0.1
+                           user=student
+                           dbname=student_db
+                           password=student""")
+```
+
+9. In psycopg2 how to create a cursor ?
+
+```
+cursor = conn.cursor()
+```
+
+10. How to create a table **music\_library** with columns **album\_name**, **artist\_name**, **year**. 
+
+```
+try:
+    cursor.execute("""create table if not exists music_library
+                                    (album_name varchar,
+                                     artist_name varchar,
+                                     year int)""")
+except psycopg2.Error as e:
+    print(e)
+```
+
+11. How to insert into **music\_library** ?
+
+```
+insert_query = "insert into music_library (album_name, artist_name, year)
+                values (%s,%s,%s)"
+values = ["fosforlu cevriyem", "ibo", 1983]
+
+
+cursor.execute(insert_query, values)
+```
+
+12. 

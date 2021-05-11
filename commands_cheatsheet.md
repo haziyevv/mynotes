@@ -27,3 +27,7 @@
 **play file.mp3** --> to play audios from terminal
 
 
+
+**grep ",1$" candidates.csv | wc -l** --> counts the number of lines that ends with 1 in candidates.csv file.
+
+ 

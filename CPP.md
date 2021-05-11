@@ -36,3 +36,53 @@ string animals[2][3] = {
             {"mouse", "squirrel", "parrot"}
 };
 ```
+
+5. **Prototype:** define a function befor creating it.
+
+```
+void doSomething();
+int main(){
+    doSomething();
+    return 0;
+}
+
+void doSomething(){
+    cout << "Hello World" << endl;
+}
+```
+
+6. Headers --> files where you put the prototypes
+
+```
+#include "utils.sh"
+```
+
+include that header file named **utils.sh** like that
+
+7. Classes: 
+
+Lets create a class named **Cat.cpp**, then we also should create **Cat.h**. We will create the class and its variables in **Cat.h**, but applications are in **Cat.cpp**:
+
+cat.h --> 
+
+```
+class Cat{
+public:
+    void speak();
+    void jump();
+}
+```
+
+cat.cpp -->
+
+```
+#include "Cat.h"
+
+void Cat::speak(){
+    cout << "Meouuuuw" << endl;
+}
+
+void Cat::jump(){
+    cout << "A cat has jumped" << endl;
+}
+```

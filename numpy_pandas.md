@@ -62,12 +62,24 @@ X_test[:, 3:] = sc.transform(X_test[:, 3:])
 # Numpy
 
 1. What is the use case of np.convolve ?
+   
    - Typical like use case in computer vision:
    
    ```
    a1 = np.array([1,2,3,4])
    a2 = np.array([0.5, 1, -0.5])
-   
-   
-   np.convolve(a1, a2, mode="valid")
    ```
+
+   np.convolve(a1, a2, mode="valid")
+
+
+
+2. Get the indices where value is greater than a threshold ?
+   
+   ```
+   np.argwhere(arr > 0)
+   ```
+
+
+
+3. 
