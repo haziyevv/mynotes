@@ -152,6 +152,8 @@ The shape of a periodic signal is called a **waveform**.
 
 **Spectral Decomposition**: Any signal can be expressed as the sum of sinusoids with different frequencies. 
 
+**Fundamental Frequency**: Lowest frequency component in spectrum
+
 **Low Pass filter**:  To remove frequencies above the given threshold
 
 **High Pass filter**: To remove the frequencies below the given threshold
