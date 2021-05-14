@@ -58,7 +58,7 @@ Theory:
 
 2. 
 
-1. Some basic tools:
+3. Some basic tools:
 
 ```
 import librosa --> main asr feature extraction tool
@@ -115,7 +115,7 @@ trimmed, index = librosa.effects.trim(reduced_noise,
 
 **top_db** --> threshold for decibel. So decibel below than top_db will be trimmed.
 
-# ASR presentation pycon-2018
+# Think\_dsp Chapter 1
 
 **Signal**: Continuous Mathematical function.
 
@@ -160,10 +160,7 @@ The lowest frequency component is called the **fundamental frequency**.
 
 When the sampling rate is 10,000 hz, the highest frequency we can measure correctly is 5000hz, above that will appear to be a low frequency signal. This is called **Nyguist theorem**, we can correctly sample frequencies below the half of the sample rate. This is also called "**folding frequency**"
 
-
-
 **Chapter 6**
-
 
 1. Sinusoid function is given below:
 
@@ -184,8 +181,6 @@ fs = 100
 
 ys = 0.1*np.cos(2*np.pi*fs*ts)
 ```
-
-
 
 2. To make an audio
 

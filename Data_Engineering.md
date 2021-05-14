@@ -233,4 +233,78 @@ values = ["fosforlu cevriyem", "ibo", 1983]
 cursor.execute(insert_query, values)
 ```
 
-12. 
+
+
+
+
+
+
+
+
+# NoSql Databases
+
+1) Common types of NoSQL databases:
+   
+   1) **Apache Cassandra** --> Partition raw store. Data is distributed as partitions, accross nodes or servers. Data is organised in a columns and rows format. 
+   
+   2) **MongoDb** --> Document Store. In addition to key lookups performed by key value, this databases offer a query that retrieves document based on its contents. Easy to do search on documents.
+   
+   3) **DynamoDb** --> Key value store. Data is represented as a collection of key value pairs.
+   
+   4) **ApacheHbase** --> Wide column Store. Also uses tables, rows and collumns like a relational database. But unlike a relational database, the names and formats of columns can vary from row to row.
+   
+   5) **Neo4J** --> Graph Database. Data is represented as nodes and edges.
+
+
+
+
+
+# Basics of Apache Cassandra
+
+* **Keyspace** --> like a database in a relational database.
+  
+  * Collection of tables.
+
+* **Table** --> A group of partitions.
+
+* **Rows** --> A single item.
+
+* **Partition** --> Is a fundamental unit of access. Collection of rows. How the data is distributed.
+
+* **Primary key**--> Made up od a partition key and clustering columns
+
+* **Columns** --> Consists of **Clustering Columns**  and **Data Columns**. Labeled Element.
+
+
+
+<img title="" src="file:///home/haziyevv/Documents/mynotes/figures/casandra_basics.png" alt="">
+
+Uses its own query language **CQL** (cassandra query language)
+
+
+
+1. What is scale-up linearity ? 
+
+    It means the more nodes you add to your system the more it grows linearly.
+
+2. When not to use NoSQL?
+   
+   1. Need ACID transactions
+   
+   2. Need to do **JOINS**
+   
+   3. Need to do aggregations and analysis.
+   
+   4. When you need changing business requirements.
+   
+   5. Queries are flexible
+
+
+
+3. To install cassandra driver to python ?
+
+```
+pip3 install cassandra-driver
+```
+
+4. 

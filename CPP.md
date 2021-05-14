@@ -86,3 +86,30 @@ void Cat::jump(){
     cout << "A cat has jumped" << endl;
 }
 ```
+
+
+
+
+
+
+
+# Constructors and Destructors
+
+```
+Cat()
+~Cat()
+```
+
+in cat.h just type the code above
+
+```
+Cat::Cat(){
+    happy = true;
+    cout << "cat is created" << endl;
+}
+
+
+Cat::~Cat(){
+    cout << 'cat is destroyed'
+}
+```
