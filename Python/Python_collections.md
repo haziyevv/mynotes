@@ -1,6 +1,6 @@
-## Collections
+# Collections and Iterables
 
-- **Tuples:** 
+- **Tuples:**
   
   - If you type one integer inside tuple python will see it as an integer, you should put a comma after it to turn it to tuple
 
@@ -27,7 +27,7 @@ Out[4]: tuple
 
 - **String**:
   
-  - Partition method: Divide the string for the seperator and outputs --> **prefix, seperator, suffix**. 
+  - Partition method: Divide the string for the seperator and outputs --> **prefix, seperator, suffix**.
   
   ```
   "unforgettable".partition("forget")
@@ -37,20 +37,20 @@ Out[4]: tuple
 
 - **List:**
   
-  - A list is a mutable object and when we assign list **a**  to list **b**, list **b** will take both values and the reference point of list **b**. So changing list **b** will also change list **a** . To cope with this we should copy the list.
+  - A list is a mutable object and when we assign list **a** to list **b**, list **b** will take both values and the reference point of list **b**. So changing list **b** will also change list **a** . To cope with this we should copy the list.
   
   - 3 different ways of copying
-  
-  ```
-  1) list1 = [1,2,3,4]
-  list2 = list1[:]
-  
-  2) list1 = [1,2,3,4]
-  list2 = list1.copy()
-  
-  3) list1 = [1,2,3,4]
-  list2 = list(list1)
-  ```
+
+```
+1) list1 = [1,2,3,4]
+list2 = list1[:]
+
+2) list1 = [1,2,3,4]
+list2 = list1.copy()
+
+3) list1 = [1,2,3,4]
+list2 = list(list1)
+```
 
 - **Copies as shallow**: When we use .copy() or [:] or list(), it does not matter immutable objects inside the list are copied with their references, so changing them will still change the main list.
 
@@ -75,3 +75,35 @@ Out[4]: tuple
   In [20]: list1
   Out[20]: [[1, 2, 3], [2, 3, 4]]
   ```
+
+
+
+
+
+
+
+## Iterables
+
+1. Iterable : something that can be iterated (set, list, dictionary, tuple)
+
+2. iterator: Using iter() function iterable is changed to iterator, on which we can iteratre over.
+
+```
+itlist = iter(list_)
+next(itlist) --> will give the next element in list
+```
+
+3. chain function: concatenates several lists lazily
+
+```
+from itertools import chain
+
+a1  = [1,2,3,4,5]
+a2  = [2,2,2,2,2]
+
+a3 = chain(a1, a2)
+In [34]: a3
+Out[34]: <itertools.chain at 0x7ff1bd65a760>
+In [35]: list(a3)
+Out[35]: [1, 2, 3, 4, 5, 2, 2, 2, 2, 2]
+```

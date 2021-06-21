@@ -27,7 +27,7 @@ ValueError                                Traceback (most recent call last)
 ValueError: invalid literal for int() with base 10: 'alma'
 ```
 
-**Type Error**: Object is not of the right type. In the example below, string or byte or int is expected, but  input was a list.
+**Type Error**: Object is not of the right type. In the example below, string or byte or int is expected, but input was a list.
 
 ```
 In [3]: converter([1,2,3,4])
@@ -44,7 +44,7 @@ TypeError                                 Traceback (most recent call last)
 TypeError: int() argument must be a string, a bytes-like object or a number, not 'list'
 ```
 
-- [x] <mark>Avoid doing this</mark>: 
+- [x] Avoid doing this:
 
 ```
 try:
@@ -53,7 +53,7 @@ except:
 pass
 ```
 
-or 
+or
 
 ```
 try:
@@ -62,7 +62,4 @@ except Exception as e
     print(e)
 ```
 
-<mark>If you pass, or catch any exception, the you will not know what causes the error.</mark>
-
-## 
-
+If you pass, or catch any exception, the you will not know what causes the error.

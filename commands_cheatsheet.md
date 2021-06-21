@@ -10,24 +10,56 @@
 
 # Linux Cheatsheet
 
-**tar xzf frodo.tar.gz** . --> this will untar and ungz and extraxt files inside the frodo.tar.gz to current directory
+1.  How to extract and untar files inside .tar.gz to current directory .
 
-**/us/local**--> where programs are installed ?
+```
+tar xzf frodo.tar.gz
+```
 
-**/opt** --> where programs are installed ?
+2. Where are the programs installed in ubuntu ?
 
-**/media**--> all external storage is mounted
+```
+/us/local
+or
+/opt
+```
 
-**/bin** --> contains all binary(program) files
+3.  Where all external storage are mounted ? 
 
-**find /home -name thisfile.txt** --> searches file named thisfile.txt in home folder
+```
+/media
+```
 
-**xdg-open** filename --> to open a pdf from terminal 
+4. **/bin** --> contains all binary(program) files
 
-**play file.mp3** --> to play audios from terminal
+5. How to search file named thisfile.txt in home folder ?
 
+```
+find /home -name thisfile.txt
+```
 
+6. How to open a pdf file from terminal ?
 
-**grep ",1$" candidates.csv | wc -l** --> counts the number of lines that ends with 1 in candidates.csv file.
+```
+xdg-open filename 
+```
 
- 
+7. How to play audios from terminal ?
+
+```
+play file.mp3
+```
+
+8. Count the number of lines that ends with 1 in candidates.csv file ? 
+
+```
+grep ",1$" candidates.csv | wc -l
+```
+
+9. How to create a symbolic link of a file named sepen.txt to the current folder ?
+
+```
+ln -s ../sepen.txt sepen
+```
+
+10. 

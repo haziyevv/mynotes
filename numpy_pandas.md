@@ -69,10 +69,8 @@ X_test[:, 3:] = sc.transform(X_test[:, 3:])
    a1 = np.array([1,2,3,4])
    a2 = np.array([0.5, 1, -0.5])
    ```
-
+   
    np.convolve(a1, a2, mode="valid")
-
-
 
 2. Get the indices where value is greater than a threshold ?
    
@@ -80,6 +78,17 @@ X_test[:, 3:] = sc.transform(X_test[:, 3:])
    np.argwhere(arr > 0)
    ```
 
+3. What is **np.select** and how do we use it ?
 
+```
 
-3. 
+```
+
+4. What is **np.where** and how to use it ?
+
+```
+np.where(condition, x, y) --> depending on the condition
+                              return either x or y
+```
+
+5. 

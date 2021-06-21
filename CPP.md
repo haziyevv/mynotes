@@ -87,13 +87,7 @@ void Cat::jump(){
 }
 ```
 
-
-
-
-
-
-
-# Constructors and Destructors
+8. Constructors and Destructors
 
 ```
 Cat()
@@ -113,3 +107,127 @@ Cat::~Cat(){
     cout << 'cat is destroyed'
 }
 ```
+
+9. String Streams
+
+```
+#include <sstream>
+
+stringstream info;
+string name = "Farid";
+int age = 29;
+
+info << "My name is" << name << " I am " << age << " years old";
+cout << info.str() << endl;
+```
+
+10. Using this pointer
+
+```
+Person::Person(string name, int age){
+    this->name = name;
+    this->age = age;
+}
+```
+
+11. Constructor initialization lists:
+
+```
+Person::Person(string name, int age): name(name), age(age){};
+```
+
+12. **Pointers**:
+
+```
+int* pnValue --> this is a pointer to int
+& --> gets the addres of a variable
+int val = 5
+&val --> returns the addres of val variable 
+*pnValue --> returns the value where pnValue pointer refers to
+```
+
+13. Casting 
+
+```
+cast to double
+double val1 = (double)7/2
+```
+
+14. Inheritance
+
+```
+class Cat: public Animal{
+
+}
+
+--> here class cat inherits from class Animal
+```
+
+
+
+# Advanced C++
+
+
+
+1. **Typedef**  --> used to create an alias for an existing data type.
+
+```
+typedef double distance_t;
+distance_t milesTo = 3.3;
+
+--> here distance_t is used instead of double as the data type
+```
+
+2. **Type alias** is a more improved version of typedef
+
+```
+using distance_t = double;
+```
+
+3. How to write to a file:
+
+```
+include <fstream>
+
+ofstream myfile("exmaple.txt");
+if(myfile.is_open()){
+    myfile << "This is life" << endl;
+    myfile.close()
+}
+```
+
+4. How to read from a file:
+
+```
+include <fstream>
+
+
+ifstream myfile("example.txt");
+if(myfile.is_open()){
+    string line;
+    while(myfile){
+        getline(myfile, line)
+        cout << line << endl;
+    }
+    myfile.close()
+}
+```
+
+5. Explain vectors briefly :
+- They are different from normal array in that they are resizable like python lists. You can start without defining its length and push as much as objects you want.
+
+```
+vector<string> strings;
+strings.push_back("one");
+strings.push_back("two");
+```
+
+6. Explain two dimensional vectors:
+
+```
+vector< vector<int> > grid(3, vector<int>(4, 12));
+
+this will create a vector (3,4) and fit it with 12s
+```
+
+7. 

@@ -233,14 +233,6 @@ values = ["fosforlu cevriyem", "ibo", 1983]
 cursor.execute(insert_query, values)
 ```
 
-
-
-
-
-
-
-
-
 # NoSql Databases
 
 1) Common types of NoSQL databases:
@@ -255,10 +247,6 @@ cursor.execute(insert_query, values)
    
    5) **Neo4J** --> Graph Database. Data is represented as nodes and edges.
 
-
-
-
-
 # Basics of Apache Cassandra
 
 * **Keyspace** --> like a database in a relational database.
@@ -271,17 +259,13 @@ cursor.execute(insert_query, values)
 
 * **Partition** --> Is a fundamental unit of access. Collection of rows. How the data is distributed.
 
-* **Primary key**--> Made up od a partition key and clustering columns
+* **Primary key**--> Made up of a partition key and clustering columns
 
 * **Columns** --> Consists of **Clustering Columns**  and **Data Columns**. Labeled Element.
-
-
 
 <img title="" src="file:///home/haziyevv/Documents/mynotes/figures/casandra_basics.png" alt="">
 
 Uses its own query language **CQL** (cassandra query language)
-
-
 
 1. What is scale-up linearity ? 
 
@@ -297,9 +281,7 @@ Uses its own query language **CQL** (cassandra query language)
    
    4. When you need changing business requirements.
    
-   5. Queries are flexible
-
-
+   5. With NoSql you can not do ad hoc queries. You should know the queries in advance and build your data model for those queries.
 
 3. To install cassandra driver to python ?
 
@@ -307,4 +289,43 @@ Uses its own query language **CQL** (cassandra query language)
 pip3 install cassandra-driver
 ```
 
-4. 
+4. How to connect to import  cassandra library to python ?
+
+```
+import cassandra
+from cassandra.cluster import Cluster
+```
+
+5. How to connect to cassandra cluster in local ?
+
+```
+try:
+    cluster = Cluster.connect(['127.0.0.1'])
+    session = cluster.connect()
+except Exception as e:
+    print(e)
+```
+
+6. How to create a **keyspace** ?
+
+```
+query = """create keyspace if not exists udacity
+           with replication={'class':'SimpleStrategy',
+            'replication_factor':1}"""
+```
+
+7. How to connect to a keyspace ? 
+
+```
+session.set_keyspace('udacity')
+```
+
+8. How to create a table ?
+
+```
+query = ""create table if not exists (song text, artist_name text,
+                           album_name text, year int, single boolean,
+                            PRIMARY_KEY(year, artist_name))""
+```
+
+9. 
