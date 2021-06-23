@@ -91,4 +91,10 @@ np.where(condition, x, y) --> depending on the condition
                               return either x or y
 ```
 
-5. 
+5. How to convert date to datetime type ?
+
+```
+df["date"] = pd.to_datetime(df["date"], format="%Y%m%d")
+```
+
+6. 
