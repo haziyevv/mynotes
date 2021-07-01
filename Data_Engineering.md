@@ -1,95 +1,3 @@
-1) Create cloud instance from cloud shell. This will create a cloud instance named **testc** on **us-central1-a** zone.
-
-```
-gcloud compute instances create testc --zone us-central1-a
-```
-
-2) Config from cloud shell the default zone to **us-central1-b**. 
-
-```
-gcloud config set compute/zone us-central1-b
-```
-
-If we create an instance by default it will be assigned to zone **us-central1-b**
-
-3) To connect to an instance through ssh:
-
-```
-gcloud compute ssh testc
-```
-
-If the instance is in another zone --> then it will not ssh. So you should give the zone name:
-
-```
-gcloud compute ssh testc --zone us-central1-a
-```
-
-4. To create a persistent disk:
-   
-   ```
-   gcloud compute disks create disk-2 --size=100gb --zone=us-central1-a
-   ```
-
-5. To attach a disk to an instance:
-   
-   ```
-   gcloud compute instances attach-disk testc --disk disk-2 --zone=us-central1-a
-   ```
-
-    to see if it is attached ssh to the instance and :
-
-```
-gcloud compute ssh testc
-
-
-ls -la /dev/disk/by-id/
-```
-
-## Kubernetes
-
-- Virtual Machines have their own operation systems, but in containers you do not need an operation system, you use the main machine's system.
-
-- Kubernetes is a container cluster, where lots containers work.
-
-- <img title="" src="figures/kubernetes.png" alt="">
-
-**Kubernetes** consists of a number of **node instances** and each node instance can be named as **Pod**. Each Pod is consisting of several **containers**.
-
-To create kubernetes cluster with one node instance
-
-```
-gcloud container clusters create my-first-cluster --num-nodes 1
-```
-
-To deploy a wordpress docker container to our kubernetes cluster. 
-
-```
-kubectl run wordpress --image=tutum/wordpress --port=80
-```
-
-tutum/wordpress is an out-of-the box docker image that includes eveything to run the site. Applying the code above a pod is created. 
-
-```
-kubectl get pods
-=>
-NAME        READY   STATUS    RESTARTS   AGE
-wordpress   1/1     Running   0          3m6s
-```
-
-By default a pod is accessible to only other machines in the cluster. 
-
-We should expose the pod as a service so it can be accessed externally. 
-
-## App Engine
-
-2 different App Engine choices exist:
-
-1) **Standard**: Preconfigured with os and programs
-
-2) **Flexible**: More like a compute engine. You can chose os and even create docker files to run.
-
-**Cloud Functions**
-
 # Data Engineering Basics
 
 1. **ETL** --> Extract, transform and Load
@@ -153,13 +61,36 @@ sudo -i -u postgres
 psql
 ```
 
-3. Create a database
+3. To change postgres user to ask a password:
+
+```
+1)--> cd /etc/postgresql/12/main/
+2)--> edit pg_hba.conf
+
+change from
+
+# TYPE DATABASE USER ADDRESS METHOD
+local  all      all          md5
+
+to
+
+# TYPE DATABASE USER ADDRESS METHOD
+local  all      all          trust
+
+3) sudo service postgresql restart
+4) psql -U postgres
+5) alter user postgres with password 'password';
+6) revert changes in pg_hba.conf from trust to md5
+7) restart postgresql 
+```
+
+4. Create a database
 
 ```
 sudo -u postgres createdb student_db
 ```
 
-4. Create user
+Create user
 
 ```
 sudo -u postgres createuser student
@@ -232,6 +163,18 @@ values = ["fosforlu cevriyem", "ibo", 1983]
 
 cursor.execute(insert_query, values)
 ```
+
+12. Data Types:
+
+**text**: text data with unlimited size
+
+**varchar**: text data with limited number of characters, at most 250, default 80
+
+**bigint**: like long -> integer with 64 bit precision
+
+**numeric**: floating point number. can be initialised like this numeric(7,3)-> here 7 is the total number of digits, 3 is the number of digits after comma. but if we initialize only numeric, it will take as much digit as it can.
+
+**decimal**: same thing as numeric.
 
 # NoSql Databases
 
@@ -328,4 +271,63 @@ query = ""create table if not exists (song text, artist_name text,
                             PRIMARY_KEY(year, artist_name))""
 ```
 
-9. 
+# Relational Data Models
+
+1. Divided to two broad categories **OLAP** and **OLTP**
+   
+   **OLAP**: online analytical processing. Used for data analysis. More aggregations and complex queries. 
+   
+   **OLTP**: online transactional processing. Used for daily requests and queries. 
+
+2. Normalisation and denormalisation
+
+**Normalisation** is the process of removing copies and redundacies in the table to make it fast for insrt, update and delete operations.
+
+**Denormalisation** is the process for making read queries faster at the cost of copies in the table. 
+
+3. **Fact** and **Dimension** tables. Fact tables are about measurements, metrics and facts. The rest are dimension tables.
+
+4. **Star** and **Snowflake** schemas are used for creating fact and dimension tables.
+
+5. **Composite** key is where group of columns are used as primary key.
+
+6. **Upsert** : this means insert or update the row if it already exists. In postgresql:
+- Check if exists and do nothing:
+
+```
+insert into customer_address (customer_id, customer_street)
+values (1, "dadash dadashov")
+on conflict (customer_id)
+do nothing;
+```
+
+* Check if exists and update:
+
+```
+insert into customer_address (customer_id, customer_street)
+values (1, "dadash dadashov")
+on conflict (customer_id)
+do update 
+    set customer_street = EXCLUDED.customer_street;
+```
+
+Excluded -- means the row that is not inserted because of conflict. Here excluded.customer\_street is "dadash dadashov"
+
+
+
+
+
+
+
+# NoSQL Data Models
+
+1. Primary keys in Cassandra
+* May consist of partition key and cluster key or only partition key.
+
+* If you want to query the table you should always add the **partition key** to the **where** clause  Clustering keys can also be added to query but in the **sorted order**.
+
+* You should select the primary key carefully, because data is distributed in nodes by the primary key. If you select **city id** as the primary key, then more data will be on Baku than Kalbajar for example. That is why **primary** key should be selected carefully to dsitribute data evenly.
+
+*  Cassandra sorts data for partition and clustering keys in descending order.
+
+* 
