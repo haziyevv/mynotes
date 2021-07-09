@@ -76,12 +76,6 @@ list2 = list(list1)
   Out[20]: [[1, 2, 3], [2, 3, 4]]
   ```
 
-
-
-
-
-
-
 ## Iterables
 
 1. Iterable : something that can be iterated (set, list, dictionary, tuple)
@@ -106,4 +100,18 @@ In [34]: a3
 Out[34]: <itertools.chain at 0x7ff1bd65a760>
 In [35]: list(a3)
 Out[35]: [1, 2, 3, 4, 5, 2, 2, 2, 2, 2]
+```
+
+
+
+## NamedTuples
+
+1. How to create a named tuple ? 
+
+```
+from collections import namedtuple
+
+Person = namedtuple("Person", "name surname children")
+
+faiq = Person("Faiq", "Haziyev", ["ferid", "tehmez"])
 ```
