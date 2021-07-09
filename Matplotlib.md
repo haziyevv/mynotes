@@ -79,8 +79,6 @@ shadow --> to put shadow
 
 autopct --> to add percentages
 
-
-
 9. How to make histogram ?
 
 ```
@@ -93,7 +91,6 @@ plt.xlabel("Age")
 plt.ylabel("Total Respondends")
 plt.legend()
 plt.tight_layout()
-
 ```
 
 axvline --> to draw vertical line
@@ -129,6 +126,4 @@ plt.tight_layout()
 
 **cmap** --> type of the color map
 
-
-
-<img title="" src="file:///home/haziyevv/Desktop/Education/PYTHON/Visualisation/matplotlib_tutorial_firuz/figures/scatter.png" alt="">
+<img title="" src="figures/scatter.png" alt="">
