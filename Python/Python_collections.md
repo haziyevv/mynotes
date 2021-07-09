@@ -102,8 +102,6 @@ In [35]: list(a3)
 Out[35]: [1, 2, 3, 4, 5, 2, 2, 2, 2, 2]
 ```
 
-
-
 ## NamedTuples
 
 1. How to create a named tuple ? 
@@ -114,4 +112,38 @@ from collections import namedtuple
 Person = namedtuple("Person", "name surname children")
 
 faiq = Person("Faiq", "Haziyev", ["ferid", "tehmez"])
+```
+
+# Data Classes
+
+1. How to create a dataclass ? 
+
+```
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    name: str
+    surname: str
+    children: list
+```
+
+# Counter
+
+1. How to create and update a counter to count words in a file ?
+
+```
+from collections import Counter
+
+counter = Counter()
+with open("filename", "r") as fr:
+    for line in fr:
+        words = line.split(" ")
+        counter.update(words)
+```
+
+2. How to select the top 10 most common ?
+
+```
+
 ```

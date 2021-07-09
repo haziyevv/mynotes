@@ -43,8 +43,6 @@ plt.bar(d_index, jdev_y, color="red", zorder=2, label="Javascript dev")
 
 <img title="" src="file:///home/haziyevv/Documents/mynotes/figures/bars_zorder.png" alt="" width="377">
 
-
-
 6. How to make side by side barcharts in a figure ? 
 - Define the **width** parameter and then change each bar with that value
 
@@ -55,34 +53,82 @@ plt.bar(d_index, pydev_y, color="green", width=width, label="Python dev")
 plt.bar(d_index+width, jdev_y, color="red", width=width, label="Javascript dev")
 ```
 
-
-
-7. 
-
-
-
-
-
-1. 
-
-2. To run inline in jupyter notebook:
+7. How to make horizontal barchart ?
 
 ```
-%matplotlib inline
+plt.barh() instead of plt.bar()
 ```
 
-2. To put the x and y axis to a range:
+8. How to make pie chart ?
 
 ```
-plt.ylim([-1, 1])
+slices = [59249, 55466, 47544, 36443, 35917]
+labels  ["JS", "HTML", "SQL", "Python", "Java"]
+
+explode = [0, 0, 0, 0.1, 0]
+plt.pie(slices, labels=labels, explode=explode,
+        shadow=True, wedgeprops={"edgecolor":"black"}, 
+        explode=explode, autopct="%1.1f%%")
 ```
 
-Like this y axis will be in range -1 to 1
+explode --> if you want to crop a class from others
 
-3. To add grid lines:
+wedgeprops --> to add border between classes
+
+shadow --> to put shadow
+
+autopct --> to add percentages
+
+
+
+9. How to make histogram ?
 
 ```
-plt.grid()
+plt.hist(ages, edgecolor="black", 
+         bins=bins, log=True)
+
+plt.axvline(median_age, color="#EF7C8E", label="Age Median")
+plt.title("Distribution of ages in Survey")
+plt.xlabel("Age")
+plt.ylabel("Total Respondends")
+plt.legend()
+plt.tight_layout()
+
 ```
 
-4. 
+axvline --> to draw vertical line
+
+10. How to make scatterplot to see correlation between variables ? 
+
+```
+plt.scatter(counts, likes, c=ratios, cmap="copper",
+            alpha=0.75, edgecolor="black", linewidth=1)
+
+cbar = plt.colorbar()
+cbar.set_label("Like/Dislike Ratio")
+
+plt.xscale("log")
+plt.yscale("log")
+
+plt.title("Trending Youtube Videos")
+plt.xlabel("View Count")
+plt.ylabel("Total Likes")
+
+plt.tight_layout()
+```
+
+**cbar** --> colorbar near the figure
+
+**.xscale** --> to scale x
+
+**.yscale** --> to scale y
+
+**alpha** --> brightness of the color of the dots
+
+**c** --> colors
+
+**cmap** --> type of the color map
+
+
+
+<img title="" src="file:///home/haziyevv/Desktop/Education/PYTHON/Visualisation/matplotlib_tutorial_firuz/figures/scatter.png" alt="">
