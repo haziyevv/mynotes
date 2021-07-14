@@ -313,12 +313,6 @@ do update
 
 Excluded -- means the row that is not inserted because of conflict. Here excluded.customer\_street is "dadash dadashov"
 
-
-
-
-
-
-
 # NoSQL Data Models
 
 1. Primary keys in Cassandra
@@ -328,6 +322,52 @@ Excluded -- means the row that is not inserted because of conflict. Here exclude
 
 * You should select the primary key carefully, because data is distributed in nodes by the primary key. If you select **city id** as the primary key, then more data will be on Baku than Kalbajar for example. That is why **primary** key should be selected carefully to dsitribute data evenly.
 
-*  Cassandra sorts data for partition and clustering keys in descending order.
+* Cassandra sorts data for partition and clustering keys in descending order.
 
-* 
+
+
+
+
+
+
+# Questions
+
+### Querying data
+
+1. How to select the distinct person names from the table ?
+
+2. How to count the distinct person names from the table ?
+
+3. How to calculate the standard deviatio of **age** column in the table ?
+
+4. How to find the number of person from each age ?
+
+5. 
+
+
+
+
+
+
+
+
+
+#### Answers
+
+1. ```
+   select distinct name from person_table;
+   ```
+
+2. ```
+   select count(distinct name) from person_table;
+   ```
+
+3. ```
+   select stddev(age) from person_table;
+   ```
+
+4. ```
+   select count(name) from person_table group by age;
+   ```
+
+5. 

@@ -1,4 +1,34 @@
-1. User input:
+1. What is a preprocessor ?
+2. What should be returned in the **main** to show that program is run correctly ?
+3. What is the size of the **short** integer ?
+4. How to get the size of any variable ?
+5. What is the size of **char** variable ?
+6. What is typedef and how to define it ? 
+7. What happens when a variable for example **int** is declared more than its maximum value ?
+8.  What is literal constant and symbolic constant ?
+9.  How to create **enum** and how it works
+10.  
+11.  
+12.  
+13.  
+14.  
+15.  
+16.  
+17.  
+18.  
+19.  
+20.  
+21.  
+22.  
+23.  
+24.  
+25.  
+26.  
+27.  
+28.  
+29.  
+30. 
+31. User input:
 
 ```
 cout << "Please enter your name:" << flush;
@@ -163,11 +193,7 @@ class Cat: public Animal{
 --> here class cat inherits from class Animal
 ```
 
-
-
 # Advanced C++
-
-
 
 1. **Typedef**  --> used to create an alias for an existing data type.
 
@@ -231,3 +257,13 @@ this will create a vector (3,4) and fit it with 12s
 ```
 
 7. 
+
+
+
+# Answers
+
+9. ```
+   enum Days = { Monday, Tuesday, Wednesday, Thursday, Friday};
+   
+   Days day1 = Friday;
+   ```
