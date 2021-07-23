@@ -5,28 +5,28 @@
 5. What is the size of **char** variable ?
 6. What is typedef and how to define it ? 
 7. What happens when a variable for example **int** is declared more than its maximum value ?
-8.  What is literal constant and symbolic constant ?
-9.  How to create **enum** and how it works
-10.  
-11.  
-12.  
-13.  
-14.  
-15.  
-16.  
-17.  
-18.  
-19.  
-20.  
-21.  
-22.  
-23.  
-24.  
-25.  
-26.  
-27.  
-28.  
-29.  
+8. What is literal constant and symbolic constant ?
+9. How to create **enum** and how it works
+10. What is the working difference between **prefix (++a)** and **postfix (a++)**   
+11. Explain ternary operator in c++ ?
+12. 
+13. 
+14. 
+15. 
+16. 
+17. 
+18. 
+19. 
+20. 
+21. 
+22. 
+23. 
+24. 
+25. 
+26. 
+27. 
+28. 
+29. 
 30. 
 31. User input:
 
@@ -256,14 +256,41 @@ vector< vector<int> > grid(3, vector<int>(4, 12));
 this will create a vector (3,4) and fit it with 12s
 ```
 
-7. 
+
+
+
+
+
+
+
 
 
 
 # Answers
 
+6) ```
+   typedef short int Shorty;
+   ```
 9. ```
    enum Days = { Monday, Tuesday, Wednesday, Thursday, Friday};
    
    Days day1 = Friday;
    ```
+
+10. With **prefix** variable is incremented before assigning. With **postfix** variable is incremented after the assignment. 
+
+11. ```
+    z = (x>y)?x:y
+    ```
+
+        explanation:
+
+```
+if (x>y){
+    z = x;
+}
+else
+    z = y;
+```
+
+12. 

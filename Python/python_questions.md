@@ -42,4 +42,13 @@ subprocess.run(["cp", source, target]) --> this is similar to
 "cp source target"
 ```
 
-12. 
+12. How does **strftime** work in python ?
+    * Returns datetime object as a string in a given format.
+
+```
+template = "%Y-%h-%d %H:%M:%S"
+now = datetime.now()
+nowstr = now.strftime(template)
+```
+
+13. 

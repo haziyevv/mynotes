@@ -127,3 +127,14 @@ plt.tight_layout()
 **cmap** --> type of the color map
 
 <img title="" src="figures/scatter.png" alt="">
+
+We can also change the radius of the dots for a column :
+
+```
+plt.scatter(counts, likes, s=follower_size, c=ratios, cmap="copper",
+            alpha=0.75, edgecolor="black", linewidth=1)
+
+
+```
+
+Here s=follower\_size, will change the sizes of the dots according to the follower size.

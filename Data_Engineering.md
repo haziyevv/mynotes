@@ -324,12 +324,6 @@ Excluded -- means the row that is not inserted because of conflict. Here exclude
 
 * Cassandra sorts data for partition and clustering keys in descending order.
 
-
-
-
-
-
-
 # Questions
 
 ### Querying data
@@ -342,15 +336,23 @@ Excluded -- means the row that is not inserted because of conflict. Here exclude
 
 4. How to find the number of person from each age ?
 
-5. 
+5. What is the difference between **OLTP** and **OLAP**. Give examples to each of them.
 
+6. What are some factors that you will take into account while building a data infrastructure ? 
 
+7. What is data model ?
 
+8. What are **Entities** and **Attributes** in **Entity Relationship Model** ?
 
+9. What is **Relational schema** in a relational model ?
 
+10. What is **Relational instance** in a relational model ?
 
+11. What does **degree** refer in a relational model ?
 
+12. What does **cardinality** refer in a relational model ?
 
+13. 
 
 #### Answers
 
@@ -370,4 +372,18 @@ Excluded -- means the row that is not inserted because of conflict. Here exclude
    select count(name) from person_table group by age;
    ```
 
-5. 
+
+
+7. Data model is a blueprint of a database system.
+
+8. Entities are tables and Attributes are the columns of the table.
+
+9. It show the names of the table attributes with their data type.
+
+10. It is the actual table created in database
+
+11. Number of attributes in a table
+
+12. Number of rows in a table
+
+13. 

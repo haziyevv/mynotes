@@ -14,9 +14,7 @@ for root, dirnames, filenames in os.walk("mynotes"):
 
 --> In next iteration it will enter the first **dirname** inside the **root**. This time **root** will be that dirname.
 
-
-
-2.  Explain **pathlib**:
+2. Explain **pathlib**:
 * Object Oriented, makes it more clean than os.path
 
 ```
@@ -32,6 +30,19 @@ path = Path("Documents") / "mynotes"
 --> .md extension inside the path and in all of its subdirectories
 ```
 
-3. 
+3. Parse xml:
+   * One possible solution is **ElementTree**
+
+```
+import xml.etree.ElementTree as ET
+
+tree = ET.parse("some_data.xml")
+root = tree.getroot()
+
+for child in root:
+    print(child.tag, child.attrib)
+```
+
+4. 
 
 
