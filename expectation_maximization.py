@@ -34,6 +34,7 @@ def expectations(experiments):
     return coina_res, coinb_res
 
 for i in range(iterations):
+    pdb.set_trace()
     expa, expb = expectations(experiments)
     ea, eb = maximization(expa), maximization(expb)
     print(i, ea, eb)

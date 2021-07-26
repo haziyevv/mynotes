@@ -329,61 +329,166 @@ Excluded -- means the row that is not inserted because of conflict. Here exclude
 ### Querying data
 
 1. How to select the distinct person names from the table ?
+   
+   ```
+   select distinct name from person_table;
+   ```
 
 2. How to count the distinct person names from the table ?
+   
+   ```
+   select count(distinct name) from person_table;
+   ```
 
-3. How to calculate the standard deviatio of **age** column in the table ?
+3. How to calculate the standard deviation of **age** column in the table ?
+   
+   ```
+   select stddev(age) from person_table;
+   ```
 
 4. How to find the number of person from each age ?
+   
+   ```
+   select count(name) from person groupby age;
+   ```
 
 5. What is the difference between **OLTP** and **OLAP**. Give examples to each of them.
 
 6. What are some factors that you will take into account while building a data infrastructure ? 
 
 7. What is data model ?
+   
+   Data model is a blueprint of a database system
 
 8. What are **Entities** and **Attributes** in **Entity Relationship Model** ?
+   
+   - Entities are tables and Attributes are the columns of the table.
 
 9. What is **Relational schema** in a relational model ?
+   
+   * It shows the names of the table attributes with their data type.
 
 10. What is **Relational instance** in a relational model ?
+    
+    * It is the actual table created in database
 
 11. What does **degree** refer in a relational model ?
+    
+    * Number of attributes in a table
 
 12. What does **cardinality** refer in a relational model ?
+    
+    * Number of rows in a table
 
-13. 
+13. What are **DDL** and **DML** statements ?
+    
+    * **DDL** used for defining tables
+      
+      * create, alter, truncate, drop
+    
+    * **DML** used for manipulating data in tables
+      
+      * **CRUD** operations: insert, select, update, delete
 
-#### Answers
+14. How to add **telephone\_number** with data type bigint column to **author** table ?
 
-1. ```
-   select distinct name from person_table;
-   ```
+```
+Alter table author
+    add column telephone_number bigint;
+```
 
-2. ```
-   select count(distinct name) from person_table;
-   ```
+15. How to alter the data type of the **telephone\_number** column from bigint to varchar(20) ?
 
-3. ```
-   select stddev(age) from person_table;
-   ```
+```
+Alter table author
+    alter column telephone_numner set data type varchar(20)
+```
 
-4. ```
-   select count(name) from person_table group by age;
-   ```
+16. How to drop the column **telephone\_number** ?
 
+```
+Alter table author
+    drop column telephone_number
+```
 
+17. What is the difference between char(20) and varchar(20) ?
 
-7. Data model is a blueprint of a database system.
+> With char(20) 20 byte will be stored even if the inputed text is less than 20 characters. But with varchar if you store 15 characters, then it will take 15 bytes. But varchar also stores 1-2 bytes for storing varying lenthg input.
 
-8. Entities are tables and Attributes are the columns of the table.
+18. How to drop a table ?
 
-9. It show the names of the table attributes with their data type.
+```
+drop table author;
+```
 
-10. It is the actual table created in database
+19. How to remove all the raws from a table immediately ?
 
-11. Number of attributes in a table
+```
+truncate table author immediate;
+```
 
-12. Number of rows in a table
+20. How to assign a primary key, while creating a table ?
 
-13. 
+```
+Create table Author 
+    (author_id int not null, name varchar, surname varchar
+    Primary Key(author_id));
+```
+
+21. How to add a primary key, after the table is already created ?
+
+```
+Alter table author
+    Add primary key(author_id)
+```
+
+22. How to create foreign key, while creating a table ?
+
+```
+Create table Book 
+    (book_id int not null, name varchar, author_id int)
+    Primary Key(book_id)
+    Constraint fk_copy_author Foreign Key(author_id)
+        References author(author_id)
+        On Delete Cascade);
+```
+
+-- > will create a table with primary key **book\_id** and foreign key **author\_id**. 
+
+--> **on delete cascade** means if the author id is deleted in the parent class this row will be deleted.
+
+23. How to add foreign key after the table is created ?
+    
+    ```
+    ALTER TABLE BookShop
+    ADD CONSTRAINT fk_BookShop FOREIGN KEY (AUTHOR_ID)
+        REFERENCES BookShop_AuthorDetails(AUTHOR_ID)
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION;
+    ```
+
+24. How to create an index in a **RDBMS** ?
+
+```
+Create Unique Index unique_book_id On book(book_id);
+```
+
+24. What are the disadvantages of **indexing** in **RDBMS** ?
+* Use disk space
+
+* Decreased performance or insert, update and delete queries.
+25. What are first, second and third normal forms ?
+* **First form:** 1) Each row should be unique 2) Each cell should contain a single value.
+
+* **Second form**: 1) Same value should not be repeated in different rows.
+
+* **Third form**: 
+26. How to create **Author Details** table from a **Bookshop** table ?
+
+```
+Create table BookShop_AuthorDetails as (
+select distinct AUTHOR_ID, AUTHOR_NAME, AUTHOR_BIO from BOOKSHOP
+) with data;
+```
+
+27. 

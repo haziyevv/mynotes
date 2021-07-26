@@ -1,42 +1,4 @@
-1. What is a preprocessor ?
-2. What should be returned in the **main** to show that program is run correctly ?
-3. What is the size of the **short** integer ?
-4. How to get the size of any variable ?
-5. What is the size of **char** variable ?
-6. What is typedef and how to define it ? 
-7. What happens when a variable for example **int** is declared more than its maximum value ?
-8. What is literal constant and symbolic constant ?
-9. How to create **enum** and how it works
-10. What is the working difference between **prefix (++a)** and **postfix (a++)**   
-11. Explain ternary operator in c++ ?
-12. 
-13. 
-14. 
-15. 
-16. 
-17. 
-18. 
-19. 
-20. 
-21. 
-22. 
-23. 
-24. 
-25. 
-26. 
-27. 
-28. 
-29. 
-30. 
-31. User input:
-
-```
-cout << "Please enter your name:" << flush;
-string name;
-cin >> name;
-```
-
-2. In c++ comparing flaots is problematic :
+1. In c++ comparing floats is problematic :
 
 ```
 float f1 = 1.1
@@ -256,41 +218,98 @@ vector< vector<int> > grid(3, vector<int>(4, 12));
 this will create a vector (3,4) and fit it with 12s
 ```
 
+7. Initialize a two dimensional vector with values:
 
+```
+vector< vector<int> > grid{
+    {1,1,2,3,4,5},
+    {0,0,0,2,2,3}};
+```
 
+8. Loop a two dimensional vector using range based loop :
 
+```
+for(auto v: grid){
+    for(int i: v){
+        cout << i << " " << flush;
+    }
+    cout << endl;
+}
+```
 
+9. 
 
+# Question and Answers
 
+1. What is a preprocessor ?
 
+2. What should be returned in the **main** to show that program is run correctly ?
 
+3. What is the size of the **short** integer ?
 
+4. How to get the size of any variable ?
 
-# Answers
+5. What is the size of **char** variable ?
 
-6) ```
-   typedef short int Shorty;
-   ```
-9. ```
-   enum Days = { Monday, Tuesday, Wednesday, Thursday, Friday};
-   
-   Days day1 = Friday;
-   ```
+6. What is typedef and how to define it ?
 
-10. With **prefix** variable is incremented before assigning. With **postfix** variable is incremented after the assignment. 
+```
+typedef short int Shorty;
+```
 
-11. ```
+7. What happens when a variable for example **int** is declared more than its maximum value ?
+
+8. What is literal constant and symbolic constant ?
+
+9. How to create **enum** and how it works ?
+
+```
+enum Days = { Monday, Tuesday, Wednesday, Thursday, Friday};
+
+Days day1 = Friday;
+```
+
+10. What is the working difference between **prefix (++a)** and **postfix (a++)**
+    
+    With **prefix** variable is incremented before assigning. With **postfix** variable is incremented after the assignment.
+
+11. Explain ternary operator in c++ ?
+    
+    ```
     z = (x>y)?x:y
+    
+    explanation:
+    
+    if (x>y){
+        z = x;
+    }
+    else
+        z = y;
     ```
 
-        explanation:
+12. How to get variables from a string using **istringstream** ?
 
 ```
-if (x>y){
-    z = x;
+string a("199 2 3");
+istringstream myStream(a);
+int n;
+myStream >> n;
+cout << n << "\n";
+
+output: 199
+```
+
+13. If the string "199,1,2" then how **istringstream** will be used ?
+
+```
+string a("199,2,3");
+istringstream myStream(a);
+int n;
+char c;
+while(mystream>>n>>c){
+    cout << n << endl;
 }
-else
-    z = y;
+
 ```
 
-12. 
+14. 
