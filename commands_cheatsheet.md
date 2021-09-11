@@ -10,7 +10,192 @@
 
 # Linux Cheatsheet
 
-1.  How to extract and untar files inside .tar.gz to current directory .
+1. What are the some common shell commands for getting information?
+
+   - **whoami** --> shows the username 
+   - **id** --> user id and group_id
+   - **uname** --> operating system
+   - **uname -a** --> returns all informations about operating system
+   - **ps** --> running processes
+   - **top** --> 
+   - **df** --> mounted file systems
+   - **man** --> reference manual
+   - **date**
+
+2.  What are the some common shell commands for working with files ?
+
+    * cp
+    * mv
+    * rm
+    * touch
+    * chmod
+    * wc
+    * **grep** --> return lines in a file matching a given pattern 
+
+3.  How to search for files in a directory ?
+
+    ```bash
+    find /etc -name '*.txt'
+    ```
+
+4. How to use **tar** to archive folders ?
+
+   | Option | Description                    |
+   | ------ | ------------------------------ |
+   | -c     | Create new archive file        |
+   | -v     | Verbosely list files processed |
+   | -f     | Archive file name              |
+
+5. Tar a folder named **bin** to bin.tar:
+
+   ```bash
+   tar -cvf bin.tar /bin
+   ```
+
+6. List all the files inside the **bin.tar** archive:
+
+   ```bash
+   tar -tvf bin.tar
+   ```
+
+7. Untar the archive **bin.tar** :
+
+   ```bash
+   tar -xvf bin.tar
+   ```
+
+8. How to compress entire folder with **zip** ?
+
+   ```bash
+   zip -r bin.zip /bin
+   ```
+
+9. How to list all the files inside the **zip** archive ?
+
+   ```bash
+   unzip -l bin.zip
+   ```
+
+10. How to unzip all the files inside the **zip** archive ?
+
+    ```bash
+    unzip bin.zip
+    ```
+
+11. How to remove read permission from all users on **test.txt** ?
+
+    ```bash
+    chmod -r test.txt
+    ```
+
+12. How to add read permission to all users on **test.txt** ?
+
+    ```bash
+    chmod +r test.txt
+    ```
+
+13. How to remove the read permission for **others** category ?
+
+    ```bash
+    chmod o-r test.txt
+    ```
+
+14. How to find the number of lines, words and characters in a file name **test.txt** ?
+
+    ```bash
+    wc test.txt
+    ```
+
+15. How to display file contents line by line ?
+
+    ```bash
+    more test.txt
+    ```
+
+16. How to find only number of lines, or words or characters in a file named **test.txt** ?
+
+    ```bash
+    wc -l test.txt
+    wc -w test.txt
+    wc -c test.txt
+    ```
+
+17. How to get all the lines in file **test.txt** that contain word people ?
+
+    ```bash
+    grep people test.txt
+    ```
+
+18. How to get all the lines in file **test.txt** that do not contain word people ?
+
+    ```bash
+    grep -v people test.txt
+    ```
+
+19. How to get all the lines in the file **test.txt** that matches word **people** as whole word ?
+
+    ```bash
+    grep -w people test.txt
+    ```
+
+20. How to display the **ethernet adapter configuration** ?
+
+    ```bash
+    ifconfig eth0
+    ```
+
+21. How to view the permissions of a file ?
+
+    ```bash
+    ls -ld file
+    ```
+
+22. How to display files in a folder in ascending order of their access times ?
+
+    ```bash
+    ls -ltr /folder
+    ```
+
+23. Show the path of the command **python3**: 
+
+    ```bash
+    which python3
+    ```
+
+24. How to redirect error outputs to a file ?
+
+    ```bash
+    python3 sayhello.py 2> file.txt
+    ```
+
+    This will write the errors happened in executing the **sayhello.py** script to the file.txt instead of the standard output
+
+25. How to assign another variable to a variable ?
+
+    ```bash
+    here=$(pwd)
+    ```
+
+26. Convert all the characters to capital letter :
+
+    ```bash
+    cat filename.txt | tr "[a-z]" "[A-Z]"
+    ```
+
+27. 
+
+28. What are the commands for printing file and string contents ?
+
+    * **more** --> prints file content page by page
+
+29. What are the common networking commands ?
+
+    * **hostname** --> 
+    * **ifconfig** --> display or configure system network interfaces
+    * **curl** --> display the contents of a file located in a url
+    * 
+
+30. How to extract and untar files inside .tar.gz to current directory .
 
 ```
 tar xzf frodo.tar.gz

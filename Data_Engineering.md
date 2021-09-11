@@ -47,7 +47,87 @@ ex: Your primary key is City but you see that most of the time you query using t
 
 - Horizontal scaling. Add new computers to the system. 
 
-## Postgresql
+# MySQL
+
+1. Installation: 
+
+```
+1. download mysql-apt-config_0.8.18-1_all.deb from mysql website
+2. sudo dpkg -i /home/haziyevv/Downloads/mysql-apt-config_0.8.18-1_all.deb
+3. sudo apt update
+4. sudo apt install mysql-server
+5. sudo apt install myslq-workbench-community
+```
+
+2. Create first database and tables in mysql:
+
+```
+mysql -p pasword
+
+create database employees;
+use employees;
+create table employee_details (firstname varchar(20), lastname varchar(20),
+                               birthday Date, salary decimal)
+```
+
+3. How to backup database in mysql ?
+
+```
+mysqldump -u root employees > employeesbackup.sql
+```
+
+4. How to backup only a table from a database ?
+
+```
+mysqldump --host=127.0.0.1 
+          --port=3306 
+          --user=root 
+          --password 
+          employees employee_details > employee_details.sql
+```
+
+5. How to restore the mysql database from the backup ?
+
+```
+mysql -u root restored_employees < employeesbackup.sql
+
+other database in udacity:
+mysql --host=127.0.0.1 
+      --port=3306 
+      --user=root 
+      --password 
+      sakila < sakila_mysql_dump.sql
+
+if you are inside the mysql command line : source employeesbackup.sql
+```
+
+6. How to load data to a table in mysql ?
+
+```
+# using infile statement
+load data infile 'employeesdata.csv' into table employees_details
+
+# using mysqlimport utility
+mysqlimport employees employees_details.csv
+```
+
+7. How to show all the tables of a database ? 
+
+```
+show full tables where table_type='BASE TABLE'
+```
+
+8. How to explore the structure of any table in mysql ?
+
+```
+describe table_name;
+```
+
+
+
+
+
+# Postgresql
 
 1) Switching to postgres account:
 
@@ -84,13 +164,19 @@ local  all      all          trust
 7) restart postgresql 
 ```
 
-4. Create a database
+4. How to list databases in postgresql using psql command line?
+
+```
+\l
+```
+
+5. Create a database
 
 ```
 sudo -u postgres createdb student_db
 ```
 
-Create user
+**Create user**
 
 ```
 sudo -u postgres createuser student
@@ -98,9 +184,15 @@ psql
 alter user student with encrypted password "kelem";
 ```
 
-Create user student. Then enter posgtgres terminal and then give that user a password.
+Create user student. Then enter **posgtgres** terminal and then give that user a password.
 
-5. To connect to the database with the given creadentials
+6. How to connect to a database in psql command line ?
+
+```
+\connect student_db
+```
+
+7. To connect to the database with the given creadentials
 
 ```
 psql -h 127.0.0.1 --username student -d student_db --password
@@ -108,7 +200,46 @@ psql -h 127.0.0.1 --username student -d student_db --password
 
 Here we connect to **hostname=localhost**,  **username=student** and **database=student_db**
 
-6. In psql when you do not commit a query after executing there will be error and psql will not let us continue. To continue with new queries, we should either commit or reconnect. To solve this **autocommit** is used.
+
+
+8. How to restore a backed up database in psql ?
+
+   using psql command:
+
+   ```sql
+   psql restored_employees < employeesbackup.sql
+   ```
+
+   inside the psql command line:
+
+   ```sql
+   \connect student_db;
+   include student_db_dump.sql;
+   ```
+
+9.  How to list all the tables in a database ?
+
+```sql
+\dt;
+```
+
+10. How to explore the structure of a table named **store** inside the **student** database ?
+
+```
+\d store;
+```
+
+
+
+11. How to dump a database in postgres ?
+
+```
+pg_dump employees > employeesbackup.sql
+pg_dump --username=postgres --host=localhost --password --dbname=sakila --table=store --format=plain > sakila_store_pgsql_dump.sql
+
+```
+
+12. In psql when you do not commit a query after executing there will be error and psql will not let us continue. To continue with new queries, we should either commit or reconnect. To solve this **autocommit** is used.
 
 ```
 conn = psycopg2.connect("host=127.0.0.1 user=student 
@@ -118,7 +249,7 @@ conn = psycopg2.connect("host=127.0.0.1 user=student
 conn.set_session(autocommit=True)
 ```
 
-7. To give user priviliges to create database:
+13. To give user priviliges to create database:
 
 ```
 sudo -i -u postgres
@@ -126,7 +257,9 @@ psql
 alter user student with createdb;
 ```
 
-8. In psycopg2, how to connect to a database ?
+
+
+14. In psycopg2, how to connect to a database ?
 
 ```
 conn = psycopg2.connect("""host=127.0.0.1
@@ -135,13 +268,13 @@ conn = psycopg2.connect("""host=127.0.0.1
                            password=student""")
 ```
 
-9. In psycopg2 how to create a cursor ?
+15. In psycopg2 how to create a cursor ?
 
 ```
 cursor = conn.cursor()
 ```
 
-10. How to create a table **music\_library** with columns **album\_name**, **artist\_name**, **year**. 
+16. How to create a table **music\_library** with columns **album\_name**, **artist\_name**, **year**. 
 
 ```
 try:
@@ -153,7 +286,7 @@ except psycopg2.Error as e:
     print(e)
 ```
 
-11. How to insert into **music\_library** ?
+17. How to insert into **music\_library** ?
 
 ```
 insert_query = "insert into music_library (album_name, artist_name, year)
@@ -164,7 +297,7 @@ values = ["fosforlu cevriyem", "ibo", 1983]
 cursor.execute(insert_query, values)
 ```
 
-12. Data Types:
+18. Data Types:
 
 **text**: text data with unlimited size
 
@@ -175,6 +308,17 @@ cursor.execute(insert_query, values)
 **numeric**: floating point number. can be initialised like this numeric(7,3)-> here 7 is the total number of digits, 3 is the number of digits after comma. but if we initialize only numeric, it will take as much digit as it can.
 
 **decimal**: same thing as numeric.
+
+19. Explain **views** in postgres:
+    - Views are alternative way of representing one or more tables or views.
+    - You can keep some info from different tables in a view.
+    - You can protect some info like private customer informations by not putting them on view.
+    - You can use it as a copy of a table, to not interact with the main table directly each time.
+
+20. Explain **materialized views** in postgres:
+    * It is created similar to the normal view, but you can not insert, update or delete to it.
+    * It is faster than the normal view but you can not change it.
+21. 
 
 # NoSql Databases
 
@@ -328,69 +472,83 @@ Excluded -- means the row that is not inserted because of conflict. Here exclude
 
 ### Querying data
 
-1. How to select the distinct person names from the table ?
+1. Retrieve the next 3 film names distinctly after first 5 films released in 2015 ?
    
+   ```
+   select distinct title from films where releasedyear=2015 limit 3 offset 5;
+   ```
+
+2. How to select the distinct person names from the table ?
+
    ```
    select distinct name from person_table;
    ```
 
-2. How to count the distinct person names from the table ?
-   
+3. How to count the distinct person names from the table ?
+
    ```
    select count(distinct name) from person_table;
    ```
 
-3. How to calculate the standard deviation of **age** column in the table ?
-   
+4. How to calculate the standard deviation of **age** column in the table ?
+
    ```
    select stddev(age) from person_table;
    ```
 
-4. How to find the number of person from each age ?
-   
+5. How to find the number of person from each age ?
+
    ```
    select count(name) from person groupby age;
    ```
 
-5. What is the difference between **OLTP** and **OLAP**. Give examples to each of them.
+6. How to update the surname of a person named "farid" in person table ?
 
-6. What are some factors that you will take into account while building a data infrastructure ? 
+   ```
+   update persons
+   set surname='haziyev'
+   where name='farid';
+   ```
 
-7. What is data model ?
-   
+7. What is the difference between **OLTP** and **OLAP**. Give examples to each of them.
+
+8. What are some factors that you will take into account while building a data infrastructure ? 
+
+9. What is data model ?
+
    Data model is a blueprint of a database system
 
-8. What are **Entities** and **Attributes** in **Entity Relationship Model** ?
-   
+10. What are **Entities** and **Attributes** in **Entity Relationship Model** ?
+
    - Entities are tables and Attributes are the columns of the table.
 
-9. What is **Relational schema** in a relational model ?
-   
-   * It shows the names of the table attributes with their data type.
+11. What is **Relational schema** in a relational model ?
 
-10. What is **Relational instance** in a relational model ?
-    
+    * It shows the names of the table attributes with their data type.
+
+12. What is **Relational instance** in a relational model ?
+
     * It is the actual table created in database
 
-11. What does **degree** refer in a relational model ?
-    
+13. What does **degree** refer in a relational model ?
+
     * Number of attributes in a table
 
-12. What does **cardinality** refer in a relational model ?
-    
+14. What does **cardinality** refer in a relational model ?
+
     * Number of rows in a table
 
-13. What are **DDL** and **DML** statements ?
-    
+15. What are **DDL** and **DML** statements ?
+
     * **DDL** used for defining tables
       
       * create, alter, truncate, drop
-    
+
     * **DML** used for manipulating data in tables
       
       * **CRUD** operations: insert, select, update, delete
 
-14. How to add **telephone\_number** with data type bigint column to **author** table ?
+16. How to add **telephone\_number** with data type bigint column to **author** table ?
 
 ```
 Alter table author
@@ -476,7 +634,7 @@ Create Unique Index unique_book_id On book(book_id);
 24. What are the disadvantages of **indexing** in **RDBMS** ?
 * Use disk space
 
-* Decreased performance or insert, update and delete queries.
+* Decreased performance on insert, update and delete queries.
 25. What are first, second and third normal forms ?
 * **First form:** 1) Each row should be unique 2) Each cell should contain a single value.
 
@@ -491,4 +649,19 @@ select distinct AUTHOR_ID, AUTHOR_NAME, AUTHOR_BIO from BOOKSHOP
 ) with data;
 ```
 
-27. 
+27. How to select **Authors** from **authors** table whose name start with ma ?
+
+```
+SELECT * FROM authors where author_name like 'ma%'
+```
+
+28. How to create a view ?
+
+```
+CREATE VIEW testing (firstname, lastname) as 
+SELECT first_name, last_name from person_table
+```
+
+29. Explain stored procedures:
+
+> 

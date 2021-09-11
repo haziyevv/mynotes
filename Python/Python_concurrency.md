@@ -19,7 +19,7 @@ IO bound vs cpu bound -- > with io bound you can use multithreading. But with cp
 6.  Most high level and easy to use parallel processing features are given by **concurrent.futures**
 
 ```
-from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
+from concurrent.futures import , ProcessPoolExecutor
 
 
 with ThreadPoolExecutor() as exec:
