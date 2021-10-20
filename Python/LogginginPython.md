@@ -77,4 +77,35 @@ logger.addHandler(console_handler)
 
 
 
+## Loguru
+
+1. to load :
+
+   ```python
+   from loguru import logger
+   ```
+
+2. File logging with rotation / retention / compression
+
+   ```python
+   logger.add("logger_file.log") --> will configure output log file to given file
+   logger.add("log_file.log", rotation="5 KB") --> if the size of the file passes 5kb start from clean
+   logger.add("out.log", backtrace=True, diagnose=True)  --> will show the full backtrace info
+   ```
+
+3. How to use logger in order to catch any exception from a function ?
+
+   ```python
+   @logger.catch
+   def my_function(x, y, z):
+   	return 1/(x+y+z)
+   ```
+
+4. If you want async logging:
+
+   ```python
+   logger.add("somefile.log", enqueue=True)
+   ```
+
+5. 
 

@@ -14,4 +14,10 @@
      FROM benn.college_football_players
    ```
 
-3. 
+3. How to concatenate two columns in bigquery and add word between. For example column name is "Marry" and column gender is "F". New column should be "Marry is a girl"
+
+```sql
+SELECT CONCAT(name, ' is ', case when gender = 'F' then 'girl' else 'boy' end) as intro FROM `baby_names`
+```
+
+4. 
