@@ -41,23 +41,6 @@ with ThreadPoolExecutor() as exec:
 
 
 
-
-
-
-
-
-Gedeye Amazon account yaratdım. Onun accountuna s3e acces verdim bu işe yaramadı.
-
-S3 iam role yaratdım ve ec2 ye verdim. bu işledi.
-
-
-
-
-
-
-
-
-
 ## Asyncio
 
 1. Runs in a single process and a single thread. 
