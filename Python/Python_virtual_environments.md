@@ -49,3 +49,17 @@ third command activates the virtual environment wrapper
 mkvirtualenv venv --> creates a virtual environment named venv in ENVS folder
 workon venv --> activates the venv virtual environment
 ```
+
+
+
+## VENV
+
+```bash
+sudo apt install python3.8-venv
+
+# create virtual environment named venv
+python3 -m venv venv 
+```
+
+
+

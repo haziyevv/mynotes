@@ -264,4 +264,20 @@ grep ",1$" candidates.csv | wc -l
 ln -s ../sepen.txt sepen
 ```
 
-10. 
+
+
+# **Awk**
+
+1. ```bash
+   awk -F ','  '{print "gs://voiceloft_amazon_data/media/" $2}' indian_test_data.csv > sepen.txt
+   ```
+
+   divides the lines in the given file with comma, and then selects the second column.
+
+2. ```bash
+   awk  -F ','  '{if (NR!=1) { print "gs://voiceloft_amazon_data/media/" $2}}' indian_test_data.csv > sepen.txt
+   ```
+
+   this will allso ignore the first row
+
+3. 

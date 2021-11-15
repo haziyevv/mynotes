@@ -57,11 +57,10 @@
 
    --> Bias happens when the machine learning model is not able to capture the true relationship effectively.  High variance happens when ther is overfit.
 
-10. Talk about **Supoort Vector Machines**:
+10. Talk about **Support Vector Machines**:
 
-    - Start with low dimensional data
-    - Move into higher dimension
-    - Find threshold that seperates the data into groups
+    - To separate two classes of data points, select a hyperplane that has the maximum margin.
+    - Start with low dimensional data, move into higher dimension and find threshold that separates the data into groups.
 
 11. Talk about **Decision Tree** : 
 
