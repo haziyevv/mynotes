@@ -1,4 +1,25 @@
-1. **Protocol Buffers** are a language-neutral mechanism for serializing structured data.
+1. What is **RPC** ?
+
+   - Remote procedure call. It is a protocol that one program can use to request a service from a program that is located in another computer.
+   - Remote procedure calls are the messages a server sends to a remote system to get the task done.
+   - RPC is a request-response protocol. 
+   - **Stub** is a piece of code used to convert parameters passed between client and server during RPC call. Main idea is to allow the local computer to call proedures on different computer (server).
+
+2. Why **gRPC** ?
+
+   - Language Independent Communication : two services say written in python and golang can communicate smoothly.
+
+3. **Protocol Buffers** are a language-neutral mechanism for serializing structured data.
+
+   gRPC uses protocol buffers for defining the type of data to be sent between the gRPC client and the gRPC server. 
+
+4. There are 4 different types of **RPCs**
+
+   1. **Unary RPCs** --> simple gRPC where it sends a single request to the server and gets back a single response.
+   2. **Server streaming RPCs** --> client sends a message to the server and receives a stream of message sequence to read. It reads the message until nothing is left.
+   3. **Client Streaming RPCs** --> Client sends a message stream to the server and receives a response
+   4. **Bidirectional streaming RPCs** --> both client and server use a stream to send a message sequence.
+
 
 Example:
 
@@ -32,7 +53,7 @@ Example:
   pip install grpcio
   pip install grpcio-tools
   
-  python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. calculator.proto
+  python -m grpc_tools.protoc --proto_path=. ./calculator.proto --python_out=. --grpc_python_out=.
   ```
 
   These files will be generated:

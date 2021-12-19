@@ -8,4 +8,11 @@
    git checkout -b testbranch mainbranch
    ```
 
+3. ```bash
+   git fetch origin
+   git reset --hard origin/master
+   ```
+
+   This will get the latest history from the server and point you  local branch at it
+
 3. 
