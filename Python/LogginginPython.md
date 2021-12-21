@@ -23,7 +23,7 @@ logging.basicConfig(level=50)
 
 ```
 logging.basicConfig(format='%(asctime)s | %(levelname)s: %(message)s', 
-                    level= logging.NOTSET)
+                    level= logging.NOTSET)
 
 
 logging.debug("Here you have some information for debugging.")
@@ -43,7 +43,7 @@ Available attributes to use: **[url](https://docs.python.org/3/library/logging.h
 
 ```
 logging.basicConfig(filename='sample.log', format='%(asctime)s | %(levelname)s:',
-                    level=logging.NotSet)
+                    level=logging.NotSet)
 ```
 
 
@@ -66,7 +66,7 @@ Steps -->
 import logging
 
 logger = logging.getLogger()
-logger.setLevel(logging.Error)
+logger.setLevel(logging.ERROR)
 console_handler = logging.StreamHandler()
 
 log_format = "%(asctime)s | %(levelname)s: %(message)s"

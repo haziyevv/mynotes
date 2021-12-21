@@ -35,3 +35,5 @@ PythonNet: Python implementation to work with .net
   ```
 
 - - [x] Whenever you see nested if statement, fix it using elif.
+
+- random.choices(list, probabilities, k=14) --> will return a list with length 14 from the list input. items with higher probabilities will be returned more often.
