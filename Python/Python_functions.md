@@ -129,4 +129,49 @@ Here lru\_cache(1) -> 1 is the number of inputs to remember.
 
 
 
+
+
+
+
+### Functools
+
+1. How to convert sequential operations like in machine learning models, to composite function ?
+
+   ex:
+
+   ```python
+   # before
+   class Model:
+       
+       def __init__(self):
+           self.linear1 = nn.Linear()
+           self.relu1 = nn.ReLU()
+           self.linear2 = nn.Linear()
+           self.relu2 = nn.ReLU()
+      	
+       def forward(self, x):
+           x = self.linear1(x)
+           x = self.relu1(x)
+           x = self.linear2(x)
+           x = self.relu2(x)
+           return x
+   
+   # after
+   class Model:
+       
+       def __init__(self):
+           self.linear1 = nn.Linear()
+           self.relu1 = nn.ReLU()
+           self.linear2 = nn.Linear()
+           self.relu2 = nn.ReLU()
+       
+       def compose(self, *functions):
+           return functools.reduce(lambda f,g: lambda x: g(f(x)) ,functions)
+       
+       def forward(self, x):
+           myfunc = compose(self.linear1, self.relu1, self.linear2, self.relu2)
+           return myfunc(x)
+   
+   ```
+
 2. 
