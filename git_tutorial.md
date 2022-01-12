@@ -15,4 +15,22 @@
 
    This will get the latest history from the server and point you  local branch at it
 
+4. To show the commit history
+
+   ```bash
+   git log
+   ```
+
+5.  to delete a local branch
+
+   ```bash
+   git branch -d mybranch
+   ```
+
+6. to remove the last commit
+
+   ```bash
+   git reset --soft HEAD~1
+   ```
+
 3. 
