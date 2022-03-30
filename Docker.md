@@ -1,13 +1,23 @@
+1. **How to build a docker image ?**
+
+   - from a dockerfile in the same directory and the image with name testing and version v1.3.0
+
+   ```bash
+   docker build -t testing:v1.3.0 .
+   ```
+
+   - from a dockerfile in the specified path and build the docker image in this directory:
+
+   ```bash
+   docker build -t testing:v1.3.0 -f docker/Dockerfile .
+   ```
+
+   
+
 1. How to run docker container and open its terminal ?
 
    ```bash
    docker run -it busybox sh
-   ```
-
-2. How to build a docker image ?
-
-   ```bash
-   sudo docker build -t testing:v1.3.0 .
    ```
 
 3. Example 1:
@@ -98,7 +108,43 @@
     docker rmi image_id
     ```
 
-14. 
+14. How to start a docker-compose from a file ?
+
+    ```bash
+    docker-compose -f docker-compose.override.yml up
+    ```
+
+15. How to debug in docker-compose ?
+
+    1. add **stdin_open:true** and **tty:true** inside the service
+
+    ```dockerfile
+    services:
+      autocorrect:
+        stdin_open: true
+        tty: true
+        command:
+    ```
+
+    2. start the docker-compose:
+
+    ```bash
+    docker compose -f test.yml up
+    ```
+
+    3. Call the started container:
+
+    ```bash
+    docker attach container_id
+    ```
+
+16. How to assign the port of the container to the local machine ?
+
+    ```bash
+    docker run -p 3000:3000 test_image
+    ```
+
+17. 
 
 
 

@@ -1,10 +1,12 @@
+[TOC]
+
 # Deep Learning / ML Basics
 
-- First important thing about pytorch is it provides multidimensional arrays named tensors with waste amount of operations, and ability to easily move from cpu to gpu. 
-
-- Second important thing is that it uses autograd engine to track the operations on tensors and compute derivatives with respect to any inputs.
-
 - **torch.\_\_file\_\_** --> shows the location where torch is installed
+
+
+
+# Torchvision
 
 
 - Famous models are loaded to **torchvision.models** and can easily applied.
@@ -19,81 +21,60 @@
 
   If we type **models.AlexNet(**) we will get an empty AlexNet class. We should train it from scratch or load weights. However, lower case **alexnet** --> function is equipped with the argument that we can pass to make the model load pretrained weigths.
   
+  ```python
+  alexnet = models.alexnet(pretrained=True)
+  ```
   
+  Just **alexnet(input)** --> will give us 1000 dimension vector, which is the vector defining scores for 1000 different classes. In alexnet it is trained with **imagenet** data and output consists of 1000 different objects. 
+  
+  Before we should apply preprocessing. 
+  
+  ```python
+  from torchvision import transforms
+  
+  preprocess = transforms.Compose([
+      transforms.Resize(256),
+      transforms.CenterCrop(224),
+      transforms.ToTensor(),
+      transforms.Normalize(mean=[0.3,0.2,0.4], 
+                           std=[0.2,0.1,0.2])
+  ])
+  ```
 
-```python
-alexnet = models.alexnet(pretrained=True)
-```
-
-Just **alexnet(input)** --> will give us 1000 dimension vector, which is the vector defining scores for 1000 different classes. In alexnet it is trained with **imagenet** data and output consists of 1000 different objects. 
-
-Before we should apply preprocessing. 
-
-```
-from torchvision import transforms
-
-preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.3,0.2,0.4], 
-                         std=[0.2,0.1,0.2])
-])
-```
-
-After going through preprocess, we can send our data to the **alexnet** as input.
+​		After going through preprocess, we can send our data to the **alexnet** as input.
 
 
 
-
-
-## Pytorch Tensors
+# Pytorch Tensors
 
 - Pytorch tensors are similar to numpy arrays but with a few additional superpowers. 
-
   - Ability to perform operations on GPU
 
   - Distribute operations to multiple devices
 
   - Keep track of the graph of computations that created them
 
-A simple one dimensional tensor with ones.
-
-- ```
-  import torch
-  a = torch.ones()
-  
-  In [4]: a
-  Out[4]: tensor([1., 1., 1.])
-  ```
-
-###### Essense of Tensors
-
 - Python lists or tupples are collections of Python objects that are individually allocated into memory. Pytorch tensors or NumPy arrays on the other hand are views over contiguous memory blocks. Pytorch or numpy arrays are unboxed C numeric types not python objects.
 
-```
-points = torch.tensor([[5,3,2], [4,3,3]])
+  ```python
+  points = torch.tensor([[5,3,2], [4,3,3]])
+  
+  In [3]: points
+  Out[3]: 
+  tensor([[5, 3, 2],
+          [4, 3, 3]])
+  
+  
+  
+  In [4]: points[0]
+  Out[4]: tensor([5, 3, 2])
+  ```
 
-In [3]: points
-Out[3]: 
-tensor([[5, 3, 2],
-        [4, 3, 3]])
+  Here we created a tensor object and then accessed the first row of that object. Does this mean we have created a new tensor object ? Of cource not, the object is the same in the storage but a view of that storage is returned.
 
+## Tensor element types
 
-
-In [4]: points[0]
-Out[4]: tensor([5, 3, 2])
-```
-
-Here we created a tensor object and then accessed the first row of that object. Does this mean we have created a new tensor object ? Of cource not, the object is the same in the storage but a view of that storage is returned.
-
-
-
-
-
-### Tensor element types
-
-1) Numbers in python are objects, but in numpy they are just 32 bit floating point numbres. İn python lists, python convert the number to an object with different capabilities that need more memory. 
+1) Numbers in python are objects, but in numpy they are just 32 bit floating point numbres. In python lists, python convert the number to an object with different capabilities that need more memory. 
 2) Python interpreter is slow compared to a compiled code.
 3) Data types:
 
@@ -106,7 +87,7 @@ Here we created a tensor object and then accessed the first row of that object. 
 
 
 
-### Torch Storage
+## Torch Storage
 
 1) Values in tensors are allocated to contiguous chunks of memory managed by **torch.Storage.** 
 
@@ -163,9 +144,7 @@ tensor([[4., 1.],
 
 
 
-
-
-#### Tensor metadata: Size, offset and stride
+## Tensor metadata: Size, offset and stride
 
 1) size is the size of tensor in each dimension
 
@@ -227,14 +206,14 @@ In the contiguous tensors number are alligned to the storage row by row.
 
 
 
-### Moving Tensors to GPU
+## Moving Tensors to GPU
 
 1. A tensor can be created in gpu directly.
 
 ```
 points = torch.tensor([[5,3,2], [4,4,2], [4,3,3]], 
-                        dtype=torch.float32, 
-                        device="cuda")
+                        dtype=torch.float32, 
+                        device="cuda")
 ```
 
 2. Also it can be moved from cpu to gpu and vice versa.
@@ -245,9 +224,7 @@ points = points.to("cpu")
 
 
 
-
-
-## **Serializing Tensors**
+## Serializing Tensors
 
 1. To save and load as pickle. Disadvantage of this is that we can only load this with PyTorch.
 
@@ -266,6 +243,45 @@ f.close()
 ```
 
 
+
+## Saving Model
+
+There are three possible ways of saving a model. 
+
+- First one is saving only the model parameters and then loading it.
+
+```python
+torch.save(model.state_dict(), PATH) # save
+
+# to load
+model = TheModelClass(*args, **kwargs)
+model.load_state_dict(torch.load(PATH))
+```
+
+- Second one is saving the entire model.
+
+```python
+torch.save(model, PATH)
+model = torch.load(PATH)
+```
+
+- Third way is saving everything about the model, like the epoch number, state_dict, optimizer etc. So, that you can continue training where you left off.
+
+```python
+state = {
+    'epoch': epoch,
+    'state_dict': model.state_dict(),
+    'optimizer': optimizer.state_dict(),
+    ...
+}
+torch.save(state, filepath)
+
+# to restore
+state = torch.load(filepath)
+model.load_state_dict(state['state_dict'])
+optimizer.load_state_dict(state['optimizer'])
+
+```
 
 
 
@@ -308,7 +324,7 @@ Out[11]: torch.Size([3, 1280, 960]
 
 
 
-### Normalizing image data
+# Normalizing image data
 
 1. Just divide the values of the pixels to 255, this is a little bit naive
 
@@ -322,16 +338,14 @@ Out[11]: torch.Size([3, 1280, 960]
 ```
 n_channels = batch.shape[1]
 for c in range(n_channels):
-    mean = torch.mean(batch[:, c])
-    std = torch.std(batch[:,c])
-    batch[:,c] = (batch[:,c]-mean)/std
+    mean = torch.mean(batch[:, c])
+    std = torch.std(batch[:,c])
+    batch[:,c] = (batch[:,c]-mean)/std
 ```
 
 
 
-
-
-### 3D images
+## 3D images
 
 1. Images we talked before are 2d images that are taken with a camera. In some contexts such as medical imaging, for example CT (computer tomography), we deal with sequences of images stacked from head to foot axis. 
 
@@ -367,8 +381,6 @@ third argumnet is the number to put.
 1. What does **unsqueeze** do ?
 
    - increases the dimension of the tensor in the given axis
-
-
 
 
 
@@ -418,14 +430,14 @@ c.shape
 
 
 
-### Optimizer -->
+## Optimizer -->
 
 Used to update the parameters automatically and apply all kinds of learning rate adaption and optimization strategies.
 
 Code above will be decrease like this:
 
 ```
-    optimizer = optim.SGD(params=[params], lr=learning_rate)
+    optimizer = optim.SGD(params=[params], lr=learning_rate)
     for epoch in range(epochs):
         t_p = model(t_un, *params)
         loss = loss_fn(t_p, t_c)
@@ -442,11 +454,11 @@ Code above will be decrease like this:
 
 ```
 def calc_forward(x, y, is_train):
-    with torch.set_grad_enabled(is_train):
-        y_hat = model(x)
-        loss = loss_fn(y_hat, y)
+    with torch.set_grad_enabled(is_train):
+        y_hat = model(x)
+        loss = loss_fn(y_hat, y)
 
-    return loss
+    return loss
 ```
 
 Here we apply one forward pass for either training or validation. If we want validation we should select **is_train=False**. For training **is_train = True**.
@@ -455,7 +467,7 @@ Here we apply one forward pass for either training or validation. If we want val
 
 
 
-## Basic Neural Network
+# Basic Neural Network
 
 ```
 import torch.nn as nn
@@ -466,9 +478,9 @@ import torch.optim as optim
 
 ```
 seq_model = nn.Sequential(
-                nn.Linear(1, 13),
-                nn.Tanh(),
-                nn.Linear(13, 1))
+                nn.Linear(1, 13),
+                nn.Tanh(),
+                nn.Linear(13, 1))
 ```
 
 2. To see the shapes of parameters:
@@ -504,9 +516,9 @@ the NN model is 1 -- 13 -- 1. Bias shapes are 13 and 1. One bias for each node.
 
 ```
 seq_model = nn.Sequential(OrderedDict([
-    ("hidden_linear", nn.Linear(1, 13)),
-    ("hidden_activation", nn.Tanh()),
-    ("output_linear", nn.Linear(13, 1))
+    ("hidden_linear", nn.Linear(1, 13)),
+    ("hidden_activation", nn.Tanh()),
+    ("output_linear", nn.Linear(13, 1))
 ])
 ```
 
@@ -523,7 +535,7 @@ output will be like below. This is more readable and easy to understand.
 
 
 
-## Torchvision Module
+# Questions and answers
 
 1. How to download CIFAR10 dataset using torchvision datasets and divide it to training and validation ?
 
@@ -564,7 +576,7 @@ img_t = to_tensor(img)
 
 ```
 cifar10 = datasets.CIFAR10("data_path", 
-                           train=True, 
+                           train=True, 
                            download=True,
                            transform=transforms.ToTensor())
 ```
@@ -604,10 +616,10 @@ view changes the shape from 3,32,32,50000 to 3, 32\*32\*50000. Then we can calcu
 
 ```
 transformed_cifar10 = datasets.CIFAR10("path", train=True, download=True,
-                                       transform=torch.Compose([
-                                          transforms.ToTensor(),
-                                          transforms.Normalize(mean, std))
-                                       ]))
+                                       transform=torch.Compose([
+                                          transforms.ToTensor(),
+                                          transforms.Normalize(mean, std))
+                                       ]))
 ```
 
 
@@ -624,7 +636,7 @@ transformed_cifar10 = datasets.CIFAR10("path", train=True, download=True,
 
 **Cross Entropy calculation:**
 
-  loss = - $\sum$ t_i \* log(p_i)   --> here t_i is the true value of the class i and p_i  is the predicted value. 
+  loss = - $\sum$ t_i \* log(p_i)   --> here t_i is the true value of the class i and p_i  is the predicted value. 
 
 **Negative Likelihood calculation**:
 
@@ -638,16 +650,24 @@ Also in pytorch, **nn.NLLLoss()** does not take the logarithm of the output, it 
 
 
 
-## Dataloader
+# Dataloader
 
 This is a pytorch class that is used for minibatching and shuffling the dataset. 
 
 ```python
-train_loader = torch.utils.data.DataLoader(cifar2,                                            batch_size=64,                                           
-										   shuffle=True)
+train_loader = torch.utils.data.DataLoader(cifar2, batch_size=64, shuffle=True)
 ```
 
 Shuffle means, shuffle the batch on each epoch. So, a different minibatch will be selected on each epoch.
+
+
+
+## Collate Function
+
+- Internally Pytorch uses a Collate Function to combine the data in your batches together.
+- We can use custom **collate_fn** for example to pad sequences of various lengths or adding support for custom data types. 
+
+ 
 
 
 

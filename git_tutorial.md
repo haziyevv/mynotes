@@ -33,4 +33,59 @@
    git reset --soft HEAD~1
    ```
 
-3. 
+7. Will show the description about the command ?
+
+   ```bash
+   git help "command"
+   ex: 
+   	git help reset
+   ```
+
+8. To remove individual files by name from the staging area:
+
+   ```bash
+   git reset filename
+   ```
+
+9. To remove all the staged files from staging area:
+
+   ```bash
+   git reset
+   ```
+
+10. To see the remote repository:
+
+    ```bash
+    git remote -v
+    ```
+
+11. How to stash and then get back to your latest changes:
+
+    ```bash
+    git stash # stashes your current changes
+    git stash list # show all the stashes hostory
+    git stash pop # restores your file to the latest stash and removes that stash
+    ```
+
+12. How to remove a stash
+
+    ```bash
+    git stash drop stash@1
+    ```
+
+12. How to remove a local branch ?
+
+    ```bash
+    git branch -d <branch_name>
+    ```
+
+13. If you started working on a new branch and there is a change in the develop branch meanwhile?
+
+    ```bash
+    # merge develop to your branch
+    git checkout my_branch
+    git merge develop
+    ```
+
+    
+

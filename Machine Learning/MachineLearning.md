@@ -229,6 +229,8 @@ example: Housing price prediction. lattitude*num_bedrooms.
 
     -> It is used in softmax. Instead of finding output for all the classes, find for the true class and some of the random negative classes.
 
+23. Library to deal with inbalanced dataset: https://imbalanced-learn.org/stable/
+
 23. 
 
 

@@ -321,6 +321,14 @@ logger.addHandler(console_handler)
 
 - random.choices(list, probabilities, k=14) --> will return a list with length 14 from the list input. items with higher probabilities will be returned more often.
 
+- How to install a different version of python using pyenv:
+
+  ```bash
+  sudo pyenv install -v 3.8.8
+  ```
+
+- 
+
 
 
 # Classes in Python
@@ -361,6 +369,15 @@ class Date:
 
 
 # Collections and Iterables
+
+1. Python **progress bar**, **loading bar**:
+
+   ```python
+   from tqdm import tqdm
+   
+   for i in tqdm(range(1000)):
+   	...
+   ```
 
 1. setdefault(key, "Something else") --> returns the value of the given key if it exists else returns the given default.
 
@@ -747,7 +764,9 @@ for child in root:
     print(child.tag, child.attrib)
 ```
 
+4. Parse **json**
 
+   
 
 
 
@@ -1218,28 +1237,36 @@ Manages dependencies on a per-project basis.
 
 --> this command will install requests library and create a Pipfile file where all the dependencies will be added.
 
-```
+```bash
 pipenv run python main.py 
 ```
 
 --> this way we run the main script. We add pipenv before, to ensure installed pipenv packages are available to the python script. İf we do not add pipenv before, libraries installed by pipenv for this project will not be accessible to the python script.
 
+- Create a pipenv environment in python3.6
+
+  ```bash
+  pipenv --python  /Users/fhaziyev/.pyenv/versions/3.6.3/bin/python3.6
+  ```
+
+- 
+
 ## **Virtualenv**
 
-```
+```bash
 pip install virtualenv
 virtualenv testing
 ```
 
 --> installs virtualenv and creates a virtualenv named testing in the given directory.
 
-```
+```bash
 to activate: source testing/bin/activate
 ```
 
 ## VirtualEnvWrapper
 
-```
+```bash
 pip install virtualenvwrapper
 export WORKON_HOME=~/ENVS
 source ./local/bin/virtualenvwrapper.sh
@@ -1251,7 +1278,7 @@ second command exports its main directory where all the created virtual environm
 
 third command activates the virtual environment wrapper
 
-```
+```bash
 mkvirtualenv venv --> creates a virtual environment named venv in ENVS folder
 workon venv --> activates the venv virtual environment
 ```
@@ -1378,4 +1405,3 @@ python3 -m venv venv
 8. A **mixin** is generally a superclass that is not meant to exist on its own, but is meant to be inherited by some other class to provide some extra functionality.
 
 9. 
-
