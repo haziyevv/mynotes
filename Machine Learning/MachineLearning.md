@@ -205,7 +205,7 @@ In very deep neural networks, sometimes one output from an activation layer can 
 
 -> It is a performance measurement for the classification problems at various threshold levels.
 
--> **ROC** is a probability curve with x axis  **false positive rate**(fp/(fp+tn)) and y axis **true positive rate**(tp/(tp+fn))
+-> **ROC** is a probability curve with x axis  **false positive rate**(fp/(fp+tn)) and y axis **true positive rate**(tp/(tp+fn)) or recall
 
 -> **AUC** shows the degree of class separability. Higher the **AUC** better the model predicts cancer as cancer and non cancer as non cancer. 1 AUC is the best 0 is the worst. 0 means we say positive to negative and negative to positive. 
 

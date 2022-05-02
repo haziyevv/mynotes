@@ -665,9 +665,9 @@ Shuffle means, shuffle the batch on each epoch. So, a different minibatch will b
 ## Collate Function
 
 - Internally Pytorch uses a Collate Function to combine the data in your batches together.
-- We can use custom **collate_fn** for example to pad sequences of various lengths or adding support for custom data types. 
+- We can use custom **collate_fn** for example to pad sequences of various lengths or adding support for custom data types. 
 
- 
+ 
 
 
 
@@ -693,4 +693,4 @@ End to end solution process:
 
 4. **DICOM** --> native file format for ct scans.
 
-5. **Hounsfield scale** quantitative scale used for radiodensity. Frequently used on ct scans. 
+5. **Hounsfield scale** quantitative scale used for radiodensity. Frequently used on ct scans. shap_values = explainer(data['text'][:3])

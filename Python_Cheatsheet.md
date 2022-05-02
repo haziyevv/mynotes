@@ -653,6 +653,34 @@ with ThreadPoolExecutor() as exec:
 
 # Exception Handling
 
+1. All the built-in exceptions are arranged under **BaseException**
+
+   - The main four subclasses under **BaseException** are:
+     - **SystemExit**
+     - **KeyboardInterrupt**
+     - **GeneratorExit**
+     - **Exception**
+
+2. Exception class contains following subclasses:
+
+   - StopIteration
+
+   - StopAsyncIteration
+
+   - ArithmeticError
+     - FloatingPointError
+     - OverflowError
+     - ZeroDivisionError
+
+   - AssertionError
+   - AttributeError
+   - BufferError
+   - EOFError
+   - ImportError
+     - ModuleNotFoundError
+
+   - LookupError
+
 **Index Error**: When the integer index is not in the range
 
 **Key Error**: When the key does not exist in the lookup
@@ -1292,6 +1320,34 @@ sudo apt install python3.8-venv
 
 # create virtual environment named venv
 python3 -m venv venv 
+```
+
+
+
+## Poetry
+
+1. To create a new directory with poetry dependencies and everything:
+
+```bash
+poetry new new-poetry-project
+```
+
+2. Add a dependency to poetry:
+
+```bash
+poetry add matplotlib
+```
+
+3. How to activate the poetry environment ?
+
+```bash
+poetry shell
+```
+
+4. To use a different python version ?
+
+```bash
+poetry env use /path/to/preferred/python/version
 ```
 
 
