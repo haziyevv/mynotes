@@ -1,0 +1,250 @@
+Saliency Map
+
+- In computer vision, saliency map is an image that highlights the region on which people's eyes focus first. The goal of a saliency map is to reflect the degree of importance of a pixel to the human visual system.
+
+#### Paper Review - 
+
+#### Paper 1: Context-Sensitive Visualisation of Deep Learning NLP models
+
+- Leverages existing NLP tools to find the most significant groups of tokens that have the greatest effect on the output
+- Contribution of this paper is a context-aware visualisation of the most influential word combinations with respect to a classifier
+- GRAD-CAM is a SOTA technigue for saliency map visualisation using the gradient information obtained from backpropagating the error signal from the loss function with respect to the specific feature map at any layer of the network.
+- **Leave One Out Process**: Leave one of the features of the features and run the model. The results are recorded for every feature. The results are calculated by subtracting the strengths of modified and unmodified outputs.
+- This work finds the significant groups of tokens that have the greatest effect on the output
+- Process:
+  1. Use sentence-level dependency parsing to highligh promising word groups
+  2. Apply leave-n out process: Systematically remove n adjacent or non-adjacent tokens from the text
+  3. Modified texts that generated largest difference in the target classification output neuron are selected and the combination of removed words are then considered to be the most influential on the model's output.
+
+
+
+####  Paper 2: Why should I trust you? Explaining the predictions of any classifier
+
+- **Model agnostic** method, that used to explain the predictions of any classifier by learning an interpretable model **locally** around the prediction.
+
+- Desired characteristics of explainers:
+
+  - Most important characteristic is that they must be interpretable. Provide qualitative understanding between the input variables and the response.  
+
+    A linear model, a gradient vector or an ? additive model ? may or may not be interpretable.
+
+  - Another criterion is **local fidelity** . For an explanation to be meaningfull it must be at least **locally faithfull**. 
+
+- LIME - Local Interpretable Model-agnostic Explanations
+
+- 
+
+#### Paper 3: Towards Explainable NLP: A Generative Explanation Framework for Text Classification
+
+
+
+#### Paper 4: A Survey of the State of Explainable AI for Natural Language Processing
+
+
+#### Paper 5: Towards Debiasing Fact Verification Models
+- Fact verification requires validating a claim in the context of evidence.
+- In this paper, identifying strong cues for predicting labels solely based on the claim, without any evidence.
+- 
+
+
+
+
+## Methods:
+
+1. Gradient Based Analysis
+2. Explainable NLP
+
+
+
+## Links
+
+1. Jay alammar general explainable ai review:  https://www.youtube.com/watch?v=Yg3q5x7yDeM
+
+2. LIME: https://github.com/marcotcr/lime
+
+   https://marcotcr.github.io/lime/tutorials/Lime%20-%20multiclass.html
+
+3. SKATER --> does not work for pytorch, works for keras
+
+4.  Shap: https://github.com/slundberg/shap
+
+5. Captum: 1. https://captum.ai/tutorials/IMDB_TorchText_Interpret
+6. 
+
+
+#### LIME RESULTS
+
+> "I want to open a credit card"
+>
+> Card-Application: [('card', 0.15263736549914977), ('open', 0.08949828920919399), ('a', 0.050251943774341876), ('credit', 0.048173885206381155), ('want', 0.044961099297724995)]
+
+
+
+> "i have a question about logging in to my account on my phone",
+>
+> Online_Banking-Access: [('logging', 0.3041673590303859), ('phone', 0.18169510959059082), ('in', 0.06979236964231511), ('account', 0.052257311293366165), ('on', 0.04744656223530126)]
+
+
+
+> "question about a fraudulent charge",
+>
+> Account-Fraud: [('fraudulent', 0.9109934600176494), ('question', -0.02550503502484561), ('charge', -0.022480403530091873), ('about', 0.02161351986308408), ('a', 0.011259403192850011)]
+
+
+
+> "i'd like to dispute a charge please"
+>
+> Transactions-Dispute_Transaction: [('dispute', 0.9131430245863497), ('charge', 0.05983200927598033), ('a', -0.02537845425082425), ('d', -0.010849317373323356), ('like', 0.0066243216020171036)]
+
+
+
+>  "i need to get access online and i'm having difficulty"
+>
+> Online_Banking-Issues: [('difficulty', 0.43495334265831276), ('online', 0.37796747397994945), ('access', 0.07711317608191395), ('and', -0.06584060134249806), ('i', 0.06476134751036897)]
+
+
+
+>  "uh i'm gonna be traveling outside is not my card to be flag"
+>
+> Travel_Notification: [('traveling', 0.5725531899009336), ('card', -0.21516794787329546), ('outside', 0.18305195622881515), ('not', -0.08940946601258987), ('gonna', 0.08464339805705094)]
+
+
+
+> "i'm not the account holder an need access to billing"
+>
+> Online_Banking-Issues: [('access', 0.08659511075211665), ('not', 0.0823028160896798), ('m', 0.04837932660189644), ('need', -0.025474323013407803), ('to', 0.02429188494163464)]
+
+
+
+> "i have a question about a charge customer service"
+>
+> Transactions-Inquiry: [('charge', 0.6481071389374916), ('about', 0.12414262340918782), ('service', -0.04515182892386346), ('a', 0.03795713888690123), ('i', -0.020232090690237157)]
+
+
+
+>  "representative i have a question about credit reporting",
+>  
+>
+> Credit-Options: [('reporting', 0.0008505511506686866), ('representative', -0.0004225516012157183), ('question', 0.00039527261557064606), ('credit', 0.00021331692960398295), ('have', -0.00012962153445627707)]
+
+
+
+> "my apple account his accidentally been delete it from uh my visa card my credit card",
+>          
+>
+> Card-Fraud: [('card', 0.06387247838715797), ('accidentally', 0.05636012901556292), ('apple', -0.02204890492848907), ('credit', 0.016262719024682352), ('it', -0.015834661369050852)]
+
+
+
+> "have a question about a charge on the denial of charge"
+>
+> Transactions-Inquiry: [('denial', -0.3840439116658996), ('charge', 0.3267645202946914), ('about', 0.10300098252612287), ('a', 0.06191878292044722), ('the', 0.05103971877382793)]
+
+
+
+>  "i'm having trouble with my card being rejected i would like to have it replaced"
+>
+> Card-Declined: [('rejected', 0.26990827892482383), ('card', 0.24747599385239225), ('replaced', -0.13410981808342975), ('i', -0.08312195556728776), ('trouble', 0.07977656827509348)]
+
+
+
+> "i'd like to increase my uh credit limit"
+>
+> Credit_Limit-Change_Limit: [('credit', 0.5769576428894143), ('increase', 0.47901932232075395), ('limit', 0.09427262948673856), ('like', 0.03008346003358412), ('d', 0.01902761357243158)]
+
+
+
+>    "oh i would like to talk to them about my um credit card"
+>
+> Card: [('card', 0.5885227689410225), ('credit', -0.04200797830616686), ('i', -0.03355953367403625), ('would', -0.024867222215312252), ('my', 0.020465689302202973)]
+
+
+
+
+
+```
+for _ in range(min(num_features, data.shape[1])):
+    max_ = -100000000
+    best = 0
+    for feature in range(data.shape[1]):
+        if feature in used_features:
+            continue
+        clf.fit(data[:, used_features + [feature]], labels,
+                sample_weight=weights)
+        score = clf.score(data[:, used_features + [feature]],
+                          labels,
+                          sample_weight=weights)
+        if score > max_:
+            best = feature
+            max_ = score
+    used_features.append(best)
+```
+
+
+
+## Captum
+
+#### Integrated Gradients
+- Used to explain predictions made by deep neural networks (or any differentiable model)
+- What are the baselines ?
+    - An information-less input, essentially all zero input.
+
+- For linear models, ML practicioners use the products of the **model coefficients** and the **feature values** in order to debug the predictions. Gradient of the output to the input is anologous to that in deep network. So, the product of the **feature values** and the **gradient** is a reasonable but simple attribution method. But it breaks the **sensitivity** property of the attribution methods.
+#### Two fundamental axioms for attribution methods
+1. Sensitivity:
+    1. if input and baseline have different predictions then differing features should be given a non-zero attribution.
+2. Implementation Invariance:
+    1. Attributions are always **identical** for two **functionally equivalent** networks. Two networks are **functionally equivalent** if their outputs are equal for all inputs despite having different implementations.
+
+
+
+1. Create scaled features using baseline and input data and the alpha:
+    1. scaled_features = x_ + alpha* (xi-x_)
+2. preds = model()
+
+
+
+
+
+</br>
+
+
+# Paper Reviews
+1. **How to make the Bi-LSTM-CRF model used in Named Entity Recognition explainable for people who have machine learning background?**
+- Trust from users.
+- To understand the layers and modify the AI system
+- Legal issues, to find the responsibility for the legal issue
+- 
+
+
+  max_alpha = 0.8
+    highlighted_text = []
+    for i, word in enumerate(sentence[0].split(' ')):
+        weight = attributions[i]
+        if weight > 0:
+            hue = 120
+            sat = 75
+            lig = 100 - int(50 * weight)
+            color = "hsl({}, {}%, {}%)".format(hue, sat, lig)
+        else:
+            hue = 0
+            sat = 75
+            lig = 100 - int(-40 * weight)
+            color = "hsl({}, {}%, {}%)".format(hue, sat, lig)
+
+        if weight is not None:
+            highlighted_text.append(
+                f'<span style="background-color:{color}; opacity:1.0; line-height:1.75">' + html_escape(
+                    word) + '</span>')
+        else:
+            highlighted_text.append(word)
+    highlighted_text = ' '.join(highlighted_text)
+
+    return HTML(highlighted_text)
+    
+    
+    
+    
+    
+    
+    <td><text style="padding-right:2em"><b>79</b></text></td><td><text style="padding-right:2em"><b>79 (0.98)</b></text></td><td><text style="padding-right:2em"><b>79</b></text></td><td><text style="padding-right:2em"><b>0.67</b></text></td><td><mark style="background-color: hsl(120, 75%, 52%); opacity:1.0;                     line-height:1.75"><font color="black"> balance                    </font></mark><mark style="background-color: hsl(0, 75%, 94%); opacity:1.0;                     line-height:1.75"><font color="black"> account                    </font></mark><mark style="background-color: hsl(0, 75%, 95%); opacity:1.0;                     line-height:1.75"><font color="black"> transfer                    </font></mark></td><tr>

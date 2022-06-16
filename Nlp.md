@@ -32,10 +32,11 @@ $$
 
 
 # Transformers
-
-1. Starts with a **Positional Encoder**
-2. Then follows a **Multihead Attention**. There are 8 **self attentions** inside multihead attention. Takes the average of those attentions
-3. Decoder: 
+1. Consists of **N** encoders. The output of one encoder is sent as input to the encoder above it. The final encoder returns the representation of the given source sentence as output.
+2. 
+3. Starts with a **Positional Encoder**
+4. Then follows a **Multihead Attention**. There are 8 **self attentions** inside multihead attention. Takes the average of those attentions
+5. Decoder: 
    - **Positional Encoder** --> 
    - **Masked Multihead Attention** --> we should mask the words in the decoder coming after the given word, because we should not know what is coming after the given word. 
    - **Multihead Attention**

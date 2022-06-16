@@ -1,4 +1,4 @@
-1. TPU is 200 times faster than GPU **
+1. TPU is 200 times faster than GPU
 2. PubSub:
    1. Topic: 
    2. Example: We have a *Human Resources* topic. 
@@ -6,6 +6,7 @@
 3. Dataflow: a fully managed service for executing Apache Beam Pipelines within the google cloud echosystem
    1. is serverless and noops. Noops means no maintenance is needed. 
 
+**Apache Beam** is used to create the pipeline and **DataFlow** is the execution engine used to implement that pipeline
 
 
 
@@ -260,6 +261,133 @@ gcloud container clusters create cluster-1 --zone us-central1-a --machine-type n
 
 
 
+## Optimizers
+1. Stochastic Gradient Descent
+2. Momentum: Adding old weights with a coefficient to the new weight update. This stops us being stuck in local minimum. 
+3. Nesterov Accelerated Gradients: Calculate gradients with respect to future weight values. 
+``W_{future} = n*v_{old} + W_{old}``
+``v_{new} = n*v_{old} - \sigma*\frac{d_{Loss}}{d_{W_{future}}}``
+
+4. Adaptive Optimization: Learning rate and momentum coefficient will not stay constant throughout the training process. These values will adapt to each weight in the network.
+5. Adagrad: (Adaptive gradients) - Decrease learning rate if weight is being updated too much in short time and it will increase if the weight is not updated much.
+6. RMSProp: additionally to adagrad decay rate is added. 
+7.  Adam: combination of RMSProp and Momentum. 
 
 
 
+## ROC AUC
+- It is a performance measurement for classification problems at various threshold settings.
+- It tells how much the model is capable of distinguishing between classes.
+- Higher the AUC, better the model at predicting class 0 as 0 and class 1 as 1
+- Use it when you only care about ranking predictions and not outputting well calibrated probabilities
+- Not use it when your data is heavily inbalanced
+- Use it when you care about true positive and true negative the same
+
+
+## Prediction Bias
+- Prediction bias = average of predictions - average of labels in dataset
+
+
+#### Question
+- What is feedback loop ?
+A model predicts university rankings based on the scores of the students. Then students will see the results and good students will go to those universities, increasing their scores further.
+- 
+
+## Types of Bias
+1. Reporting Bias
+2. Automation Bias
+3. Selection Bias
+    1. Coverage bias
+    2. Non-response bias
+    3. Sampling Bias
+4. Group Attribution Bias
+    1. In-group Bias
+    2. Out-group Bias
+5. **Implicit Bias**: When assumptions are made by ones own beliefs rather than the actual. ex: An engineer training a gesture classification takes head shake as no, but it is actually yes in some cultures
+
+
+
+## TOOLS
+1. **Dataproc**: 
+2. Service Types:
+    1. IAAS: infrastructure as a service(compute engine)
+    2. PAAS: Platform as a service (app engine)
+3.     
+ 
+
+
+## Data Management
+- Unstructured data are usually stored in Cloud Storage
+- **Cloud Storage** has four primary storage classes:
+    - Standard Storage (for frequently accessed or data stored for a brief period of time)
+    - Nearline Storage: Data read or modified once per month
+    - Coldline Storage: Once every 90 days
+    - Archive Storage: Once every year
+- Structured data:
+    - Transactional data: Fast data inserts and updates are required. If you acces your data with sql : **Cloud SQL** or **Cloud Spanner** is needed. If no sql **Firestore** is the option.
+    - Analytical data: Used when entire data needed to read. If sql is needed use **BiqQuery**. If no sql use **Cloud BigTable**
+
+
+
+## Data Ingestion and Process
+1. Pub Sub
+2. Data Flow
+3. Dataproc
+4. Cloud Data Fusion
+
+## Data Storage
+1. Cloud Storage
+2. CloudSQL
+3. Cloud Big Table
+4. Cloud Spanner
+5. Firestore
+
+## Analytics
+1. BigQuery
+2. Data Studio
+3. Looker
+
+# ML
+1. Vertex AI:
+    1. AutoML
+    2. Vertex AI Workbench
+    3. Tensorflow
+
+AI Solutions
+1. Document AI
+2. Contact Center AI
+3. Retail Product Discovery
+4. Healthcare Data Engine
+
+
+## Inbalanced Data
+1. **Downsampling**: Training on a low subset of the majority class
+2.**Upweighting**: Adding an example weight to the downsampled class equal to the factor by which you downsampled
+
+ 
+ ## Kubeflow
+ 1. Describe Kubeflow pipeline ?
+     1. Create the ops - (kubeflow tasks). These ops are docker containers, that are executed when the tasks are run
+     2. Compose the ops - specify the order of these tasks. output of one op is inputed to other op
+ 2. How to instantiate an op ?
+     - mlengine_train_op()
+     - evaluate_model_op()
+ 3. What is func_to_container_op ?
+     - It is used to convert a simple python function to a container op
+
+
+ 
+ 
+ ## Reinforcement Learning
+ - The purpose is to find the suitable action model that would maximize the total cumulative reward of the agent.
+ 
+ 
+ ## Recommendations AI
+ - Avaiable Recommendation types:
+     - Others you may like: Product detailde qoyursan ki bunlari da beyene bilersen.
+     - **Frequently bought together**: Add to card edib artiq productu. Orda hemin product benzer produktlari gosterib, frequently bought together deyirsen.
+     - **Recommended for you**: Home pagede gosterilir ki bunlara baxa bilersen.
+     - Recently viewed
+
+     
+    
