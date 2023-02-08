@@ -1,1 +1,16 @@
+1. Python-dotenv
+example: create a .env file consisting of:
+        # Development settings
+        DOMAIN=example.org
+        ADMIN_EMAIL=admin@${DOMAIN}
+        ROOT_URL=${DOMAIN}/app
+
+from dotenv import load_dotenv
+
+load_dotenv('.env')  # take environment variables from .env.
+
+this will call the .env file and the parameters in the .env will be as if they are environmental variables
+
+
+2. 
 
