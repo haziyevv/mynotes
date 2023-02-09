@@ -1322,7 +1322,8 @@ sudo apt install python3.8-venv
 python3 -m venv venv 
 ```
 
-
+If you want to install using pip from an external source:
+pip install --index_url external_source library_name
 
 ## Poetry
 
