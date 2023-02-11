@@ -12,5 +12,10 @@ load_dotenv('.env')  # take environment variables from .env.
 this will call the .env file and the parameters in the .env will be as if they are environmental variables
 
 
-2. 
+2. If you encounter memory-related issues in a Python application, 
+you can use the built-in gc (garbage collector) module to diagnose and fix memory leaks,
+as well as tools like memory_profiler and tracemalloc to help you identify the parts of your code
+that are consuming the most memory.
+
+3.
 
