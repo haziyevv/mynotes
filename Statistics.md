@@ -68,4 +68,34 @@
     Z = \frac{x-mean}{std}
     $$
 
-11. 
+11. What is central limit theorem ?
+
+    - Whatever the population distribution is (binomıal, unıform, exponential etc.,) distribution of the means of several (1000 for example) samples from this distribution is gonna be normal
+    - 
+
+12. What is sampling distribution ?
+
+    - a statistic computed from a lot of samples drawn from the same population
+
+13. What is standard error ?
+
+    - it is the standard deviation of the sampling distribution divided by square root of sample size. 
+
+    - $$
+      Standard\ error = \frac{s}{\sqrt{n}}
+      $$
+
+    - how about standard deviation:
+
+    - $$
+      s = \frac{\sum{(x_i - \hat{x})}}{n-1}
+      $$
+
+      here n is the number of samples
+
+14. What is the bootstrap ?
+
+    - Create additional samples by replacement from the given sample
+    - Calculate the statistic using that samples
+
+15. 
