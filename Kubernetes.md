@@ -246,6 +246,6 @@
 
     Inside the nod, there is an internal network and each pod has its own internal IP adress.
 
-    ![image-20230319150357580](/home/haziyevv/.config/Typora/typora-user-images/image-20230319150357580.png)
+    ![image-20230319150357580](image-20230319150357580.png)
 
     
