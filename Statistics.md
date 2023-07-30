@@ -98,4 +98,8 @@
     - Create additional samples by replacement from the given sample
     - Calculate the statistic using that samples
 
-15. 
+15. What is the difference between a random variable and a variable ?
+
+    - a variable can be assigned a number but a random variable can take many numbers with different probabilities
+
+16. 

@@ -11,8 +11,14 @@
 11. What is false discovery rate ?
 12. What is degrees of freedom ?
 13. How do you calculate the correlation coefficient between two variables ?
-14. 
-
+14. What is central limit theorem
+15. What is sampling distribution ?
+16. What is the difference of data distribution and sampling distribution and sample distribution ?
+17. What is standard error ?
+18. What is the bootstrap ?
+19. Explain boxplot
+20. What is the difference between a random variable and a variable ?
+21. 
 
 
 

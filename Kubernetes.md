@@ -248,4 +248,51 @@
 
     ![image-20230319150357580](image-20230319150357580.png)
 
-    
+19. Kubernetes Services:
+
+    - They are objects just like Deployment, Replicaset etc.. Are used to connect port to a pod.
+
+    There are 3 types of Services:
+
+    1. NodePort --> service makes an internal pod accessable on a port on the nod
+    2.  ClusterIp --> service creates a virtual IP inside the cluster to enable connection between different servers
+    3. LoadBalancer --> Distribute load accros the different web servers
+
+
+
+NodePort config (definition) file:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata: 
+	name: myapp-service
+spec:
+	type: NodePort
+	ports:
+		targetPort: 80
+		port: 80
+		nodePort: 30008
+	selector:
+		app: myapp
+		type: front-end
+```
+
+
+
+![nodeport](nodeport.png)
+
+To create the service:
+
+```bash
+kubectl create -f service-definition.yml
+```
+
+To show the created services:
+
+```bash
+kubectl get services
+```
+
+
+
