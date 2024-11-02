@@ -16,23 +16,24 @@ Given Simple scatter plot:
 ```python
 import matplotlib.pyplot as plt
 
-x = [1, 2, 3, 4]
-y = [10, 20, 25, 30]
-plt.scatter(x, y)  # All points have a size of 100
+# x is gdp per capita. 
+# y is life expectancy
+# 
+plt.scatter(x = gdp_cap, y = life_exp)
 plt.show()
 ```
 
 - add labels
 
   ```python
-  plt.xlabel('xlabel')
-  plt.ylabel('ylabel')
+  plt.xlabel('GDP per Capita [in USD]')
+  plt.ylabel('Life Expectancy [in years]')
   ```
 
 - add title
 
   ```python
-  plt.title('title')
+  plt.title('World Development in 2007')
   ```
 
 - add sizes to each point. This will size each point in the graph according to its value
@@ -45,7 +46,7 @@ plt.show()
 - add color to each point
 
   ```python
-  colors = ['red', 'red', 'green', 'blue']
+  # colors: a list with a color for each point. ['black', 'red', 'yellow', ...]
   plt.scatter(x, y, s=sizes, c=colors)
   ```
 
@@ -54,22 +55,29 @@ plt.show()
   set alpha to a value:
 
   ```python
-  plt.scatter(x, y, s=sizes, c=colors, alpha=0.5)
+  plt.scatter(x = gdp_cap, y = life_exp, s = np.array(pop) * 2, c = colors, alpha = 0.8)
   ```
 
 - To set x and y ticks where we want. 
 
   ```python
   # x oxunda sadece bu reqemler olacaq 
-  plt.xticks([0, 5, 10, 15, 20, 25, 30, 35, 40])
+  plt.xticks([1000,10000,100000], ['1k','10k','100k'])
   ```
-  
+
 - To add text inside the graph:
 
   ```python
   plt.text(1550, 71, 'India')
+  plt.text(5700, 80, 'China')
   ```
-  
+
+- To add grid lines:
+
+  ```python
+  plt.grid(True)
+  ```
+
   ![image-20241102135920261](https://p.ipic.vip/77dy9a.png)
 
 3. How to apply different plot style ?
