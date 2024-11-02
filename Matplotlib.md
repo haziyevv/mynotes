@@ -1,21 +1,76 @@
-1. How to add xlabel and ylabel and title to a plot ?
-
-```
-plt.xlabel("x label")
-plt.ylabel("y label")
-plt.title("plot showing some results")
-```
-
 2. How to add a legend ?
 
-```
-Plotları yaradanda label argumentine ad ver ve sonda da plt.legend çağır
+```python
+# Plotları yaradanda label argumentine ad ver ve sonda da plt.legend çağır
 
 plt.plot(x, y1, label="Birinci")
 plt.plot(x, y2, label="İkinci")
 
 plt.legend()
 ```
+
+# Scatter Plot
+
+Given Simple scatter plot: 
+
+```python
+import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4]
+y = [10, 20, 25, 30]
+plt.scatter(x, y)  # All points have a size of 100
+plt.show()
+```
+
+- add labels
+
+  ```python
+  plt.xlabel('xlabel')
+  plt.ylabel('ylabel')
+  ```
+
+- add title
+
+  ```python
+  plt.title('title')
+  ```
+
+- add sizes to each point. This will size each point in the graph according to its value
+
+  ```python
+  sizes = [0.1, 0.1, 2, 0.5]
+  plt.scatter(x, y, s=sizes)
+  ```
+
+- add color to each point
+
+  ```python
+  colors = ['red', 'red', 'green', 'blue']
+  plt.scatter(x, y, s=sizes, c=colors)
+  ```
+
+- To change the brightness of the colors of the points:
+
+  set alpha to a value:
+
+  ```python
+  plt.scatter(x, y, s=sizes, c=colors, alpha=0.5)
+  ```
+
+- To set x and y ticks where we want. 
+
+  ```python
+  # x oxunda sadece bu reqemler olacaq 
+  plt.xticks([0, 5, 10, 15, 20, 25, 30, 35, 40])
+  ```
+  
+- To add text inside the graph:
+
+  ```python
+  plt.text(1550, 71, 'India')
+  ```
+  
+  ![image-20241102135920261](https://p.ipic.vip/77dy9a.png)
 
 3. How to apply different plot style ?
 
@@ -97,7 +152,7 @@ axvline --> to draw vertical line
 
 10. How to make scatterplot to see correlation between variables ? 
 
-```
+```python
 plt.scatter(counts, likes, c=ratios, cmap="copper",
             alpha=0.75, edgecolor="black", linewidth=1)
 

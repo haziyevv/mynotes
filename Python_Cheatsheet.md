@@ -21,37 +21,15 @@
 
 
 
-**Status Code**
 
-| 1XX  | Informational           |
-| ---- | ----------------------- |
-| 100  | Everything is so far ok |
-| 2xx  | Success                 |
-| 200  | Ok                      |
-| 3xx  | Redirection             |
-| 300  | Multiple Choices        |
 
-| 4XX  | Client Error   |
-| ---- | -------------- |
-| 401  | Unathorized    |
-| 403  | Forbidden      |
-| 404  | Not Found      |
-| 500  | Server Error   |
-| 501  | No Implemented |
-
-* How to send request to http://httpbin.org/get   using name = farid and id=123 with **get request** ?
-
-```
-requests.get("https://httpbin.org/get", 
-              params={"name":"Farid", "id":123})
-```
-
-* How to send **post request** to http://httpbin.org/get using name=farid and id=123 ?
-
-```
-requests.post("https://httpbin.org/get",
-               params={"name":"Farid", "id":123})
-```
+|      |      |
+| ---- | ---- |
+|      |      |
+|      |      |
+|      |      |
+|      |      |
+|      |      |
 
 ## Overview of HTTP
 
@@ -654,7 +632,6 @@ with ThreadPoolExecutor() as exec:
 # Exception Handling
 
 1. All the built-in exceptions are arranged under **BaseException**
-
    - The main four subclasses under **BaseException** are:
      - **SystemExit**
      - **KeyboardInterrupt**
@@ -744,6 +721,23 @@ except Exception as e
 ```
 
 If you pass, or catch any exception, the you will not know what causes the error.
+
+
+
+## Error Codes
+
+**Status Code**
+
+| 4XX     | Client Error          |
+| ------- | --------------------- |
+| 401     | Unathorized           |
+| 403     | Forbidden             |
+| 404     | Not Found             |
+| 405     | Method Not Allowed    |
+| **5xx** | **Server Error**      |
+| 500     | Internal Server Error |
+| 502     | Bad Gateway           |
+| 503     | Service Unavailable   |
 
 
 
