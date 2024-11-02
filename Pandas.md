@@ -14,47 +14,129 @@ df.info()  --> info about columns data type,
 df.describe() --> shows statistical infos about numberic columns
 ```
 
-2. What is the difference between **loc** and **iloc** ?
+2. loc and iloc explained:
+
+   ```markdown
+   **loc** and **iloc** both selects the row. 
+   **iloc** selects by the place of the index, but **loc** by the label of the index. 
+   df.loc[3] --> will give the raw whose index is 3. But if the index is not a number then **df.loc[3]** will not work, instead we should give the name of the index of the wanted row.
+   ```
 
 3. How to select the rows between 2 and 6 and columns between 3 and 7 in pandas ?
 
-4. How to select rows between 2 and 6 and columns between "Name" and "Age" ?
+   ```python
+   df.iloc[2:6,3:7]
+   ```
 
-5. How to change the index ?
+4. How to change the index ?
+
+   ```python
+   df.set_index("kelem")
+   ```
 
 6. How to get back to the number index again ?
 
+   ```python
+   df.reset_index()
+   ```
+
 7. How to set the index column while loading csv in pandas ?
+
+   ```python
+   pd.read_csv("kelem.csv", index_col="email") # --> if header has a name
+   pd.read_csv("kelem.csv", index_col=0) # --> select the first 
+   # column as index
+   ```
 
 8. How to sort df according to the index ?
 
+   ```python
+   df.sort_index()
+   ```
+
 9. How to filter rows whose nationality is in ["azerbaijan", "turkey", "italy"] ? 
+
+   ```python
+   df[df["nationality"].isin(["azerbijain", "tuekry", "italy"])]
+   ```
 
 10. How to filter rows whose nationality contains string "stan" ?
 
+    ```python
+    df[df["nationality"].str.contains("stan", na=False)]
+    ```
+
 11. How to change all column names to be underscore seperated instead of empty space seperated ?
+
+    ```python
+    df.columns.str.replace(" ", "_")
+    ```
 
 12. How to change some column names ?
 
+    ```python
+    df.rename(columns={"first_name":"first", "second_name":"second"})
+    ```
+
 13. How to turn all **Yes** value to **True** and **No** values to **False** in a column ?
+
+    ```python
+    df["col"].map({"Yes":True, "No":False})
+    ```
 
 14. How to apply a function to all the items in a dataframe ?
 
+    ```python
+    df.apply_map(func)
+    ```
+
 15. How to drop columns **name** and **email** ?
+
+    ```python
+    df.drop(columns=["name", "email"])
+    ```
 
 16. Given a colmn name **fullname**, how to divide it to 2 columns **name** and **surname** ?
 
+    ```python
+    df[["name", "surname"]] = df["fullname"].str.split(" ", expand=True)
+    ```
+
 17. How to append a dataframe to another ?
+
+    ```python
+    df.append(df2, ignore_index=True)
+    ```
 
 18. How to sort dataframe by **name** and **surname** ?
 
+    ```python
+    df.sort_values(by=["name", "surname"])
+    ```
+
 19. How to sort dataframe by **name** and **surname** by **descending** order for name and **ascending** order for **surname** ? 
+
+    ```python
+    df.sort_values(by=["name", "surname"], ascending=[False, True])
+    ```
 
 20. Select top **n** largest rows in **age** column ?
 
+    ```python
+    df["age"].nlargest(10)
+    ```
+
 21. Select **top n** largest rows in the datafraame according to the **age** column ?
 
+    ```python
+    df.nlargest(10, "Age")
+    ```
+
 22. How to scale the output of **.value\_counts** to 0-1 ?
+
+    ```python
+    df["country"].value_counts(normalize=True)
+    ```
 
 23. **GroupBy**
 
@@ -131,119 +213,3 @@ groups["Salary"].agg(["mean", "median"])  --> group with country and then
     ```python
     df.dropna(subset=["name", "toy"])
     ```
-
-31. 
-
-
-
-
-
-
-
-# Answers
-
-2. **loc** and **iloc** both selects the row. **iloc** selects by the place of the index, but **loc** by the label of the index. df.loc[3] --> will give the third fourth raw. But df.loc[3] --> will give the raw whose index is 3. But if the index is not a number then **df.loc[3]** will not work, instead we should give the name of the index of the wanted row.
-
-3. 
-   
-   ```python
-   df.loc[2:6,3:7]
-   ```
-   
-4. 
-   
-   ```python
-   df.loc[2:6, "Name":"Age"]
-   ```
-   
-5. 
-   
-   ```python
-   df.set_index("kelem")
-   ```
-   
-6. 
-   
-   ```python
-   df.reset_index()
-   ```
-   
-7. 
-   
-   ```python
-   pd.read_csv("kelem.csv", index_col="email") --> if header has a name
-   pd.read_csv("kelem.csv", index_col=0) --> select the first 
-   column as index
-   ```
-   
-8. 
-   
-   ```python
-   df.sort_index()
-   ```
-   
-9. 
-   
-   ```python
-   df[df["nationality"].isin(["azerbijain", "tuekry", "italy"])]
-   ```
-   
-10. 
-    
-    ```python
-    df[df["nationality"].str.contains("stan", na=False)]
-    ```
-    
-11. 
-    
-    ```python
-    df.columns.str.replace(" ", "_")
-    ```
-    
-12. 
-    
-    ```python
-    df.rename(columns={"first_name":"first", "second_name":"second"})
-    ```
-    
-13. ```
-    df["col"].map({"Yes":True, "No":False})
-    ```
-
-14. ```
-    df.apply_map(func)
-    ```
-
-15. ```
-    df.drop(columns=["name", "email"])
-    ```
-
-16. ```
-    df[["name", "surname"]] = df["fullname"].str.split(" ", expand=True)
-    ```
-
-17. ```
-    df.append(df2, ignore_index=True)
-    ```
-
-18. ```
-    df.sort_values(by=["name", "surname"])
-    ```
-
-19. ```
-    df.sort_values(by=["name", "surname"], ascending=[False, True])
-    ```
-
-20. ```
-    df["age"].nlargest(10)
-    ```
-
-21. ```
-    df.nlargest(10, "Age")
-    ```
-
-22. ```
-    df["country"].value_counts(normalize=True)
-    ```
-
-23. 
