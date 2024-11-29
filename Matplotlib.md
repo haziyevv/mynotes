@@ -1,4 +1,4 @@
-2. How to add a legend ?
+1. How to add a legend ?
 
 ```python
 # Plotları yaradanda label argumentine ad ver ve sonda da plt.legend çağır
